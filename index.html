@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gabriel Diniz · Construindo em público</title>
+  <meta name="description" content="Engenheiro de Software em formação. Construindo em público com foco em Bitcoin, agentes de IA e automação." />
+
+  <meta property="og:title" content="Gabriel Diniz" />
+  <meta property="og:description" content="Construindo em público · Bitcoin · Agentes de IA · Brasil" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gabbswq.github.io" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;1,500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: #222;
+      --border-strong: #2e2e2e;
+      --text: #ededed;
+      --text-soft: #888;
+      --text-muted: #555;
+      --accent: #f7931a;
+      --radius: 8px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      overflow-x: hidden;
+    }
+
+    a { color: var(--text); text-decoration: none; transition: color 0.15s; }
+    a:hover { color: var(--accent); }
+
+    em, .italic {
+      font-family: 'Newsreader', serif;
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    /* ========== Layout principal: duas colunas ========== */
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      max-width: 1100px;
+      width: 100%;
+      align-items: start;
+    }
+    @media (min-width: 768px) {
+      .layout { grid-template-columns: 1fr 1.1fr; gap: 4rem; }
+    }
+
+    /* ========== Coluna da foto ========== */
+    .photo-col { width: 100%; }
+    .photo {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .photo .initials {
+      font-family: 'Newsreader', serif;
+      font-size: 8rem;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--accent);
+      opacity: 0.35;
+      letter-spacing: -0.05em;
+    }
+    .photo .placeholder-note {
+      position: absolute;
+      bottom: 1rem;
+      left: 0;
+      right: 0;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-align: center;
+      letter-spacing: 0.15em;
+    }
+    /* QUANDO TIVER FOTO: troque o conteúdo do .photo por
+       <img src="foto.jpg" alt="Gabriel" style="width:100%;height:100%;object-fit:cover" /> */
+
+    /* ========== Coluna do conteúdo ========== */
+    .content-col {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .bio-header { display: flex; flex-direction: column; gap: 1rem; }
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #ffaa3d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--bg);
+    }
+    .bio-text { font-size: 1.05rem; line-height: 1.6; color: var(--text); }
+    .bio-text .lead {
+      font-family: 'Newsreader', serif;
+      font-style: italic;
+      font-weight: 500;
+    }
+    .bio-text a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: var(--text-muted);
+      text-underline-offset: 3px;
+    }
+    .bio-text a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+    /* ========== Menu principal: Projetos / Stack / Contato ========== */
+    .main-menu {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--border);
+    }
+    .main-menu a, .main-menu summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.05rem 0;
+      border-bottom: 1px solid var(--border);
+      font-weight: 500;
+      font-size: 1rem;
+      cursor: pointer;
+      list-style: none;
+      color: var(--text);
+    }
+    .main-menu summary::-webkit-details-marker { display: none; }
+    .main-menu .arrow {
+      color: var(--text-muted);
+      transition: transform 0.2s, color 0.15s;
+    }
+    .main-menu a:hover .arrow,
+    .main-menu summary:hover .arrow,
+    .main-menu details[open] .arrow {
+      color: var(--accent);
+      transform: translateX(4px);
+    }
+    .main-menu details[open] .arrow { transform: rotate(90deg); }
+
+    .stack-content {
+      padding: 0 0 1.05rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .stack-content span {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 0.8rem;
+      padding: 0.3rem 0.7rem;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      color: var(--text-soft);
+      background: var(--surface);
+    }
+
+    /* ========== Social inline + Contato ========== */
+    .social-line {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      line-height: 1.55;
+      margin-top: 0.5rem;
+    }
+    .social-line a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: var(--text-muted);
+      text-underline-offset: 3px;
+    }
+    .social-line a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+    .signup form {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.85rem;
+    }
+    .signup input[type="email"] {
+      flex: 1;
+      padding: 0.85rem 1rem;
+      background: transparent;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .signup input[type="email"]:focus { border-color: var(--accent); }
+    .signup button {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-strong);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: all 0.15s;
+      flex-shrink: 0;
+    }
+    .signup button:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+    }
+    .signup .note {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      margin-top: 0.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* ========== Footer ========== */
+    footer {
+      margin-top: 1rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    footer a { color: var(--text-muted); text-decoration: underline; text-decoration-color: var(--text-muted); text-underline-offset: 3px; }
+    footer a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- COLUNA 1: foto/placeholder -->
+  <div class="photo-col">
+    <div class="photo">
+      <span class="initials">GD</span>
+      <span class="placeholder-note">FOTO EM BREVE</span>
+    </div>
+  </div>
+
+  <!-- COLUNA 2: conteúdo -->
+  <div class="content-col">
+
+    <div class="bio-header">
+      <div class="avatar">GD</div>
+      <p class="bio-text">
+        <span class="lead">Olá — Sou o Gabriel,</span> Engenheiro de Software em formação,
+        aqui no Brasil. Construindo em público com foco em Bitcoin, agentes de IA e automação.
+        Saiba um pouco mais <a href="https://github.com/gabbswq">sobre mim</a>.
+      </p>
+    </div>
+
+    <!-- Menu principal: Projetos / Stack / Contato -->
+    <nav class="main-menu">
+      <a href="https://github.com/gabbswq?tab=repositories" target="_blank" rel="noopener">
+        <span>Projetos</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <details>
+        <summary>
+          <span>Stack</span>
+          <span class="arrow">→</span>
+        </summary>
+        <div class="stack-content">
+          <span>Python</span>
+          <span>JavaScript</span>
+          <span>TypeScript</span>
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>Linux</span>
+          <span>Git</span>
+          <span>tmux</span>
+          <span>Claude Code</span>
+          <span>MCP</span>
+          <span>Bitcoin</span>
+        </div>
+      </details>
+
+      <a href="#contato">
+        <span>Contato</span>
+        <span class="arrow">→</span>
+      </a>
+    </nav>
+
+    <!-- Linha de redes sociais -->
+    <p class="social-line">
+      Compartilho a jornada em
+      <a href="https://github.com/gabbswq" target="_blank" rel="noopener">GitHub</a>,
+      <a href="https://x.com/gabbsweb3" target="_blank" rel="noopener">𝕏</a> e
+      <a href="mailto:gabbsdiniz@proton.me">e-mail</a>
+      — me acompanhe.
+    </p>
+
+    <!-- Área de contato (form abre mailto) -->
+    <div class="signup" id="contato">
+      <form id="contact-form" autocomplete="on">
+        <input
+          type="email"
+          name="email"
+          id="email-input"
+          placeholder="Digite seu e-mail"
+          aria-label="Seu e-mail"
+          required
+        />
+        <button type="submit" aria-label="Enviar">→</button>
+      </form>
+      <p class="note">Ao enviar, abre o seu app de e-mail com mensagem pronta.</p>
+    </div>
+
+    <footer>
+      <div>Direitos autorais 2026 · <a href="https://github.com/gabbswq">@gabbswq</a></div>
+      <div><a href="mailto:gabbsdiniz@proton.me">Contato</a></div>
+    </footer>
+
+  </div>
+
+</div>
+
+<script>
+  // O form de contato abre o app de e-mail do visitante (mailto)
+  // Critério de aceite: "Formulário de contato abre o app de email"
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const visitorEmail = document.getElementById('email-input').value;
+    const subject = encodeURIComponent('Olá Gabriel — chegou pelo seu site');
+    const body = encodeURIComponent(
+      'Oi Gabriel,\n\n' +
+      'Cheguei pelo gabbswq.github.io. Meu e-mail: ' + visitorEmail + '\n\n' +
+      '— '
+    );
+    window.location.href = 'mailto:gabbsdiniz@proton.me?subject=' + subject + '&body=' + body;
+  });
+</script>
+
+</body>
+</html>
