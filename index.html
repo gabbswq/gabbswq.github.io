@@ -493,10 +493,154 @@
         padding: 0 1rem 2rem;
       }
     }
+
+    /* ===== FINAL FIX: background, proton, whatsapp ===== */
+    .ambient-visual {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .ambient-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(90deg, rgba(5,5,5,0.98) 0%, rgba(5,5,5,0.88) 40%, rgba(5,5,5,0.74) 68%, rgba(5,5,5,0.86) 100%),
+        linear-gradient(to bottom, rgba(5,5,5,0.7), rgba(5,5,5,0.92)),
+        url("./hero-bg-final.png?v=15");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center right;
+      opacity: 0.64;
+      filter: brightness(0.82) contrast(1.12) saturate(0.92);
+      transform: scale(1.02);
+    }
+
+    .ambient-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 72% 62%, rgba(247,147,26,0.16), transparent 28%),
+        radial-gradient(circle at 82% 40%, rgba(130,90,255,0.11), transparent 30%),
+        radial-gradient(circle at 35% 50%, transparent 0%, rgba(5,5,5,0.82) 72%);
+      opacity: 0.8;
+    }
+
+    .page {
+      position: relative;
+      z-index: 2;
+    }
+
+    .proton-badge {
+      width: 1.15rem;
+      height: 1.15rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid currentColor;
+      border-radius: 0.35rem;
+      font-family: Manrope, Inter, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--text);
+      opacity: 0.95;
+      transition:
+        color 0.22s ease,
+        border-color 0.22s ease,
+        transform 0.22s ease,
+        box-shadow 0.22s ease;
+    }
+
+    .social-link:hover .proton-badge {
+      color: var(--accent);
+      border-color: var(--accent);
+      transform: scale(1.08) rotate(-4deg);
+      box-shadow: 0 0 18px rgba(247,147,26,0.14);
+    }
+
+    .footer-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .footer-contact > span {
+      color: var(--text-muted);
+    }
+
+    .whatsapp-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.42rem;
+      color: var(--text-soft);
+      text-decoration: none;
+      transition:
+        color 0.22s ease,
+        transform 0.22s ease;
+    }
+
+    .whatsapp-link::after {
+      content: "";
+      position: absolute;
+      left: 1rem;
+      right: 0;
+      bottom: -0.18rem;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      opacity: 0.75;
+      transition: transform 0.25s ease;
+    }
+
+    .wa-dot {
+      width: 0.36rem;
+      height: 0.36rem;
+      border-radius: 999px;
+      background: var(--accent);
+      opacity: 0.75;
+      box-shadow: 0 0 14px rgba(247,147,26,0.38);
+      animation: waPulse 2.4s ease-in-out infinite;
+    }
+
+    .whatsapp-link:hover {
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .whatsapp-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    @keyframes waPulse {
+      0%, 100% {
+        opacity: 0.45;
+        transform: scale(0.82);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @media (max-width: 859px) {
+      .ambient-visual::before {
+        background-position: 68% bottom;
+        opacity: 0.48;
+      }
+    }
+
   </style>
 </head>
 
 <body>
+  <div class="ambient-visual" aria-hidden="true"></div>
   <main class="page">
     <section class="hero">
       <div class="layout">
@@ -525,12 +669,7 @@
             </a>
 
             <a class="social-link" href="mailto:gabbsdiniz@proton.me">
-              <svg class="proton-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4.4 5.2h15.2c.8 0 1.4.6 1.4 1.4v10.8c0 .8-.6 1.4-1.4 1.4H4.4c-.8 0-1.4-.6-1.4-1.4V6.6c0-.8.6-1.4 1.4-1.4Z"/>
-                <path d="M4.9 6.9 12 12.6l7.1-5.7"/>
-                <path d="M4.9 17.1 9.8 12.9"/>
-                <path d="M19.1 17.1 14.2 12.9"/>
-              </svg>
+              <span class="proton-badge">P</span>
               <span>Proton</span>
             </a>
           </div>
@@ -546,23 +685,18 @@
           <footer>
             <div>© 2026 · <a href="https://github.com/gabbswq">@gabbswq</a></div>
 
-            <a class="contact-link" href="https://wa.me/5542988365669" target="_blank" rel="noopener">
-              <span class="contact-dot"></span>
+            <div class="footer-contact">
               <span>Contact</span>
-              <span class="contact-main">WhatsApp</span>
-              <span class="contact-arrow">→</span>
-            </a>
+              <a class="whatsapp-link" href="https://wa.me/5542988365669" target="_blank" rel="noopener">
+                <span class="wa-dot"></span>
+                WhatsApp ↗
+              </a>
+            </div>
           </footer>
         </div>
       </div>
     </section>
-
-    <section class="end-scene">
-      <div class="end-scene-inner">
-        <img src="./hero-bg-final.png?v=13" alt="" loading="lazy" />
-      </div>
-    </section>
-  </main>
+</main>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
@@ -596,7 +730,7 @@ I came from gabbswq.github.io. My e-mail: ${visitorEmail}
         rotateX: 55
       });
 
-      gsap.set([".profile-line", ".links", ".signup", "footer", ".end-scene"], {
+      gsap.set([".profile-line", ".links", ".signup", "footer"], {
         opacity: 0,
         y: 18
       });
@@ -627,12 +761,7 @@ I came from gabbswq.github.io. My e-mail: ${visitorEmail}
         y: 0,
         stagger: 0.08,
         duration: 0.65
-      }, "-=0.45")
-      .to(".end-scene", {
-        opacity: 1,
-        y: 0,
-        duration: 0.8
-      }, "-=0.35");
+      }, "-=0.45");
 
       const photo = document.querySelector(".photo");
 
