@@ -219,30 +219,122 @@
     }
 
 
-    /* ===== Social/footer polish + premium interactions ===== */
+    /* ===== GSAP-inspired portfolio motion ===== */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 32% 45%, rgba(247, 147, 26, 0.08), transparent 28%),
+        radial-gradient(circle at 72% 40%, rgba(255, 255, 255, 0.035), transparent 26%);
+      opacity: 0.7;
+      z-index: -1;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(circle at center, black, transparent 72%);
+      opacity: 0.18;
+      z-index: -1;
+    }
+
+    .photo {
+      isolation: isolate;
+      transform-style: preserve-3d;
+      transition:
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+    }
+
+    .photo::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(120deg, transparent, rgba(247,147,26,0.45), transparent);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .photo:hover {
+      border-color: rgba(247, 147, 26, 0.28);
+      box-shadow:
+        0 40px 120px rgba(0, 0, 0, 0.72),
+        0 0 0 1px rgba(247,147,26,0.08),
+        0 0 48px rgba(247,147,26,0.08);
+    }
+
+    .photo:hover::before {
+      opacity: 0.18;
+    }
+
+    .photo img {
+      transition: filter 0.35s ease;
+      will-change: transform, filter;
+    }
+
+    .photo:hover img {
+      filter: brightness(0.98) contrast(1.13);
+    }
+
+    .greeting {
+      overflow: hidden;
+    }
+
+    .greeting span {
+      display: inline-block;
+      will-change: transform, opacity;
+    }
+
+    .subtitle,
+    .links,
+    .signup,
+    footer {
+      will-change: transform, opacity;
+    }
+
     .links {
       gap: 0.7rem;
     }
 
     .links a {
       position: relative;
-      padding: 0.52rem 0.72rem;
+      padding: 0.55rem 0.75rem;
       border: 1px solid transparent;
       border-radius: 999px;
-      color: var(--text);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
+      overflow: hidden;
       transition:
-        transform 0.22s ease,
-        border-color 0.22s ease,
-        background 0.22s ease,
-        color 0.22s ease;
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .links a::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(247,147,26,0.12), transparent);
+      transform: translateX(-120%);
+      transition: transform 0.55s ease;
+    }
+
+    .links a:hover::before {
+      transform: translateX(120%);
     }
 
     .links a:hover {
-      transform: translateY(-2px);
       color: var(--text);
+      transform: translateY(-2px);
       border-color: rgba(247, 147, 26, 0.32);
       background: rgba(247, 147, 26, 0.075);
     }
@@ -253,49 +345,29 @@
       fill: currentColor;
       color: var(--text);
       display: block;
-      transition: color 0.22s ease, transform 0.22s ease;
+      position: relative;
+      z-index: 1;
+      transition: color 0.2s ease, transform 0.2s ease;
     }
 
-    .mail-glyph {
-      font-size: 0.95rem;
+    .social-glyph {
+      position: relative;
+      z-index: 1;
+      font-size: 1rem;
       line-height: 1;
-      opacity: 0.95;
-      transition: color 0.22s ease, transform 0.22s ease;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .links a span:not(.social-glyph),
+    .links a svg {
+      position: relative;
+      z-index: 1;
     }
 
     .links a:hover .social-icon,
-    .links a:hover .mail-glyph {
+    .links a:hover .social-glyph {
       color: var(--accent);
       transform: scale(1.08) rotate(-3deg);
-    }
-
-    .photo {
-      transition:
-        transform 0.45s cubic-bezier(.2,.8,.2,1),
-        box-shadow 0.45s cubic-bezier(.2,.8,.2,1),
-        border-color 0.45s cubic-bezier(.2,.8,.2,1);
-      will-change: transform;
-    }
-
-    .photo:hover {
-      transform: translateY(-8px) scale(1.012);
-      border-color: rgba(247, 147, 26, 0.25);
-      box-shadow:
-        0 34px 110px rgba(0, 0, 0, 0.72),
-        0 0 0 1px rgba(247, 147, 26, 0.08),
-        0 0 42px rgba(247, 147, 26, 0.08);
-    }
-
-    .photo img {
-      transition:
-        transform 0.6s cubic-bezier(.2,.8,.2,1),
-        filter 0.45s cubic-bezier(.2,.8,.2,1);
-      will-change: transform, filter;
-    }
-
-    .photo:hover img {
-      transform: scale(1.035);
-      filter: brightness(0.98) contrast(1.12);
     }
 
     .signup input[type="email"] {
@@ -306,105 +378,75 @@
     }
 
     .signup input[type="email"]:hover {
-      border-color: rgba(247, 147, 26, 0.36);
-      background: rgba(255, 255, 255, 0.015);
+      border-color: rgba(247, 147, 26, 0.38);
+      background: rgba(255, 255, 255, 0.018);
     }
 
     .signup input[type="email"]:focus {
-      border-color: rgba(247, 147, 26, 0.85);
+      border-color: rgba(247, 147, 26, 0.9);
       box-shadow:
         0 0 0 4px rgba(247, 147, 26, 0.08),
-        0 0 28px rgba(247, 147, 26, 0.08);
-      background: rgba(255, 255, 255, 0.02);
+        0 0 34px rgba(247, 147, 26, 0.12);
+      background: rgba(255, 255, 255, 0.025);
     }
 
     .signup button {
       transition:
-        transform 0.22s ease,
-        box-shadow 0.22s ease,
-        border-color 0.22s ease,
-        background 0.22s ease,
-        color 0.22s ease;
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
     }
 
     .signup button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(247, 147, 26, 0.18);
+      box-shadow: 0 16px 40px rgba(247, 147, 26, 0.2);
     }
 
-    .footer-contact {
+    .contact-link {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-    }
-
-    .footer-contact span {
-      color: var(--text-muted);
-    }
-
-    .footer-contact a {
-      padding: 0.28rem 0.55rem;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 999px;
+      gap: 0.35rem;
       color: var(--text-muted);
       text-decoration: none;
+      padding: 0.3rem 0.55rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
       transition:
-        transform 0.22s ease,
-        border-color 0.22s ease,
-        background 0.22s ease,
-        color 0.22s ease;
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
     }
 
-    .footer-contact a:hover {
+    .contact-link span {
+      color: var(--text-soft);
+      transition: color 0.2s ease;
+    }
+
+    .contact-link:hover {
       transform: translateY(-1px);
       color: var(--accent);
       border-color: rgba(247, 147, 26, 0.32);
       background: rgba(247, 147, 26, 0.07);
     }
 
-    .content-col,
-    .photo-col {
-      animation: heroEnter 0.85s cubic-bezier(.2,.8,.2,1) both;
-    }
-
-    .content-col {
-      animation-delay: 0.1s;
-    }
-
-    @keyframes heroEnter {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-        filter: blur(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-      }
+    .contact-link:hover span {
+      color: var(--accent);
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .content-col,
-      .photo-col,
       .photo,
       .photo img,
       .links a,
+      .links a::before,
       .social-icon,
-      .mail-glyph,
+      .social-glyph,
       .signup input[type="email"],
       .signup button,
-      .footer-contact a {
-        animation: none;
+      .contact-link {
         transition: none;
-      }
-
-      .photo:hover,
-      .photo:hover img,
-      .links a:hover,
-      .signup button:hover,
-      .footer-contact a:hover {
-        transform: none;
       }
     }
 
@@ -425,14 +467,12 @@
   </div>
 
   <div class="content-col">
-<h1 class="greeting">Hi, I'm Gabriel.</h1>
+<h1 class="greeting"><span>Hi,</span> <span>I\'m</span> <span>Gabriel.</span></h1>
     <p class="subtitle">Welcome to my profile.</p>
 
     <div class="links">
       <a href="https://x.com/gabbsweb3" target="_blank" rel="noopener" aria-label="Twitter / X">
-        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-7.3L6.4 22H3.3l7.3-8.4L2.8 2h6.4l4.4 6.6L18.9 2Zm-1.1 17.9h1.7L8.2 4H6.4l11.4 15.9Z"/>
-        </svg>
+        <span class="social-glyph">𝕏</span>
         <span>Twitter</span>
       </a>
 
@@ -444,7 +484,7 @@
       </a>
 
       <a href="mailto:gabbsdiniz@proton.me" aria-label="Email">
-        <span class="mail-glyph">✉</span>
+        <span class="social-glyph">✉</span>
         <span>Email</span>
       </a>
     </div>
@@ -467,17 +507,97 @@
     <footer>
       <div>© 2026 · <a href="https://github.com/gabbswq">@gabbswq</a></div>
 
-      <div class="footer-contact">
-        <span>Contact</span>
-        <a href="https://wa.me/5542988365669" target="_blank" rel="noopener">WhatsApp ↗</a>
-      </div>
+      <a class="contact-link" href="https://wa.me/5542988365669" target="_blank" rel="noopener">
+        Contact <span>WhatsApp</span> ↗
+      </a>
     </footer>
 
   </div>
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script>
+
+  if (window.gsap) {
+    gsap.set([".photo-col", ".content-col"], { opacity: 0, y: 26, filter: "blur(10px)" });
+    gsap.set(".greeting span", { opacity: 0, y: 48, rotateX: 55 });
+    gsap.set([".subtitle", ".links", ".signup", "footer"], { opacity: 0, y: 18 });
+
+    const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+    tl.to(".photo-col", {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      duration: 1.05
+    })
+    .to(".content-col", {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      duration: 0.9
+    }, "-=0.72")
+    .to(".greeting span", {
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      stagger: 0.08,
+      duration: 0.85
+    }, "-=0.55")
+    .to([".subtitle", ".links", ".signup", "footer"], {
+      opacity: 1,
+      y: 0,
+      stagger: 0.08,
+      duration: 0.65
+    }, "-=0.45");
+
+    const photo = document.querySelector(".photo");
+    if (photo) {
+      photo.addEventListener("mousemove", (e) => {
+        const rect = photo.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+        gsap.to(photo, {
+          rotateY: x * 5,
+          rotateX: -y * 5,
+          y: -6,
+          scale: 1.012,
+          duration: 0.45,
+          ease: "power3.out"
+        });
+
+        gsap.to(".photo img", {
+          x: x * 12,
+          y: y * 12,
+          scale: 1.04,
+          duration: 0.55,
+          ease: "power3.out"
+        });
+      });
+
+      photo.addEventListener("mouseleave", () => {
+        gsap.to(photo, {
+          rotateY: 0,
+          rotateX: 0,
+          y: 0,
+          scale: 1,
+          duration: 0.65,
+          ease: "elastic.out(1, 0.55)"
+        });
+
+        gsap.to(".photo img", {
+          x: 0,
+          y: 0,
+          scale: 1,
+          duration: 0.65,
+          ease: "power3.out"
+        });
+      });
+    }
+  }
+
   document.getElementById('contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
     const visitorEmail = document.getElementById('email-input').value;
