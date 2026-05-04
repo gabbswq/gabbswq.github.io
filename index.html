@@ -90,12 +90,34 @@
     }
 
     .greeting {
-      font-family: 'Inter', system-ui, sans-serif;
-      font-weight: 700;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+      font-weight: 600;
       font-size: 2.25rem;
       line-height: 1.2;
       color: var(--text);
-      letter-spacing: -0.025em;
+      letter-spacing: -0.035em;
+    }
+
+    /* Marker "Portfolio" acima do nome */
+    .portfolio-marker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.85rem;
+      border: 1px solid var(--border-strong);
+      border-radius: 100px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-soft);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      align-self: flex-start;
+      margin-bottom: 0.25rem;
+    }
+    .portfolio-marker .icon {
+      color: var(--accent);
+      font-size: 0.85rem;
     }
 
     .tagline {
@@ -189,11 +211,20 @@
 
   <div class="photo-col">
     <div class="photo">
-      <span class="initials">GD</span>
+      <!-- Quando foto.jpg existir, ela aparece. Senão, fallback pras iniciais. -->
+      <img src="foto.jpg" alt="Gabriel"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+           style="width:100%;height:100%;object-fit:cover;border-radius:8px;display:block;" />
+      <span class="initials" style="display:none;">GD</span>
     </div>
   </div>
 
   <div class="content-col">
+
+    <span class="portfolio-marker">
+      <span class="icon">◆</span>
+      Portfolio
+    </span>
 
     <h1 class="greeting">Hi, I'm Gabriel.</h1>
 
