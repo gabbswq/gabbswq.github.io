@@ -501,33 +501,6 @@
       z-index: 2;
     }
 
-    .proton-badge {
-      width: 1.15rem;
-      height: 1.15rem;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid currentColor;
-      border-radius: 0.35rem;
-      font-family: Manrope, Inter, sans-serif;
-      font-size: 0.72rem;
-      font-weight: 800;
-      line-height: 1;
-      color: var(--text);
-      opacity: 0.95;
-      transition:
-        color 0.22s ease,
-        border-color 0.22s ease,
-        transform 0.22s ease,
-        box-shadow 0.22s ease;
-    }
-
-    .social-link:hover .proton-badge {
-      color: var(--accent);
-      border-color: var(--accent);
-      transform: scale(1.08) rotate(-4deg);
-      box-shadow: 0 0 18px rgba(247,147,26,0.14);
-    }
 
     .footer-contact {
       display: inline-flex;
@@ -694,6 +667,31 @@
       }
     }
 
+
+    /* ===== FIX MAIL ICON ===== */
+    .mail-icon {
+      width: 1.12rem;
+      height: 1.12rem;
+      display: inline-block;
+      color: var(--text);
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.85;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.95;
+      transition:
+        color 0.22s ease,
+        transform 0.22s ease,
+        opacity 0.22s ease;
+    }
+
+    .social-link:hover .mail-icon {
+      color: var(--accent);
+      opacity: 1;
+      transform: scale(1.08) rotate(-4deg);
+    }
+
   </style>
 </head>
 
@@ -726,8 +724,13 @@
               <span>LinkedIn</span>
             </a>
 
-            <a class="social-link" href="mailto:gabbsdiniz@proton.me">
-              <span class="proton-badge">P</span>
+            <a class="social-link" href="mailto:gabbsdiniz@proton.me" aria-label="Email">
+              <svg class="mail-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3.5" y="5.5" width="17" height="13" rx="2.4"></rect>
+                <path d="M5.2 7.4 12 12.8l6.8-5.4"></path>
+                <path d="M5.4 17.1 10 12.9"></path>
+                <path d="M18.6 17.1 14 12.9"></path>
+              </svg>
               <span>Proton</span>
             </a>
           </div>
