@@ -615,9 +615,70 @@
       transform: translateX(-0.95rem);
     }
 
+
+    /* ===== Ambient cinematic background ===== */
+    body {
+      position: relative;
+      background: #050505;
+    }
+
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(90deg, rgba(5,5,5,0.92) 0%, rgba(5,5,5,0.68) 42%, rgba(5,5,5,0.82) 100%),
+        radial-gradient(circle at 68% 48%, rgba(247,147,26,0.12), transparent 34%),
+        url("./hero-bg.png");
+      background-size: cover;
+      background-position: center right;
+      background-repeat: no-repeat;
+      opacity: 0.72;
+      filter: saturate(0.95) contrast(1.06) brightness(0.78);
+      transform: scale(1.02);
+    }
+
+    .ambient-bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 50%, rgba(0,0,0,0.1), rgba(0,0,0,0.72) 72%),
+        linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.72));
+    }
+
+    .ambient-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(circle at center, black, transparent 78%);
+      opacity: 0.22;
+    }
+
+    .layout {
+      position: relative;
+      z-index: 2;
+    }
+
+    .photo {
+      backdrop-filter: blur(8px);
+      background: rgba(10,10,10,0.52);
+    }
+
+    .content-col {
+      position: relative;
+    }
+
   </style>
 </head>
 <body>
+
+<div class="ambient-bg" aria-hidden="true"></div>
 
 <div class="layout">
 
@@ -762,6 +823,24 @@
       });
     }
   }
+
+
+    // ambient parallax
+    const ambientBg = document.querySelector(".ambient-bg");
+    if (window.gsap && ambientBg) {
+      window.addEventListener("mousemove", (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 18;
+        const y = (e.clientY / window.innerHeight - 0.5) * 12;
+
+        gsap.to(ambientBg, {
+          x,
+          y,
+          scale: 1.035,
+          duration: 1.2,
+          ease: "power3.out"
+        });
+      });
+    }
 
   document.getElementById('contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
