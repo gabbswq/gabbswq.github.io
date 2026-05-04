@@ -4,16 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gabriel</title>
-  <meta name="description" content="Gabriel · Brazil. Welcome to my place on the internet." />
+  <meta name="description" content="Gabriel · Brazil." />
 
   <meta property="og:title" content="Gabriel" />
-  <meta property="og:description" content="Brazil. Building things in public." />
+  <meta property="og:description" content="Brazil." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://gabbswq.github.io" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@0,400;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <style>
     :root {
@@ -30,7 +30,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
@@ -59,7 +59,7 @@
       .layout { grid-template-columns: 1fr 1.1fr; gap: 4rem; }
     }
 
-    /* ===== Foto / placeholder ===== */
+    /* ===== Photo ===== */
     .photo-col { width: 100%; }
     .photo {
       width: 100%;
@@ -72,33 +72,30 @@
       position: relative;
       overflow: hidden;
     }
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: var(--radius);
+      display: block;
+    }
     .photo .initials {
-      font-family: 'Newsreader', serif;
-      font-size: 8rem;
-      font-style: italic;
-      font-weight: 500;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 7rem;
+      font-weight: 600;
       color: var(--accent);
       opacity: 0.35;
       letter-spacing: -0.05em;
     }
 
-    /* ===== Coluna do conteúdo ===== */
+    /* ===== Right column ===== */
     .content-col {
       display: flex;
       flex-direction: column;
-      gap: 1.75rem;
+      gap: 1.5rem;
     }
 
-    .greeting {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
-      font-weight: 600;
-      font-size: 2.25rem;
-      line-height: 1.2;
-      color: var(--text);
-      letter-spacing: -0.035em;
-    }
-
-    /* Marker "Portfolio" acima do nome */
+    /* Marker "Portfolio" */
     .portfolio-marker {
       display: inline-flex;
       align-items: center;
@@ -106,51 +103,53 @@
       padding: 0.4rem 0.85rem;
       border: 1px solid var(--border-strong);
       border-radius: 100px;
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 0.78rem;
-      font-weight: 500;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
       color: var(--text-soft);
-      letter-spacing: 0.02em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       align-self: flex-start;
-      margin-bottom: 0.25rem;
     }
     .portfolio-marker .icon {
       color: var(--accent);
-      font-size: 0.85rem;
+      font-size: 0.9rem;
     }
 
-    .tagline {
-      font-size: 1.05rem;
-      color: var(--text-soft);
-      line-height: 1.5;
-    }
-    .tagline a {
+    .greeting {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+      font-weight: 600;
+      font-size: 2.5rem;
+      line-height: 1.1;
       color: var(--text);
-      text-decoration: underline;
-      text-decoration-color: var(--text-muted);
-      text-underline-offset: 3px;
+      letter-spacing: -0.04em;
     }
-    .tagline a:hover { color: var(--accent); text-decoration-color: var(--accent); }
 
+    /* Inline social links */
     .links {
       display: flex;
-      gap: 1.25rem;
+      gap: 1.5rem;
       flex-wrap: wrap;
       font-size: 0.95rem;
-      padding: 0.5rem 0;
+      padding-top: 1.25rem;
+      padding-bottom: 1.25rem;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding-top: 1rem;
-      padding-bottom: 1rem;
     }
     .links a {
       color: var(--text);
       transition: color 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
     }
     .links a:hover { color: var(--accent); }
+    .links a .platform-icon {
+      font-size: 0.95rem;
+      opacity: 0.7;
+    }
 
-    /* ===== Form ===== */
+    /* Form */
     .signup form {
       display: flex;
       gap: 0.5rem;
@@ -211,10 +210,10 @@
 
   <div class="photo-col">
     <div class="photo">
-      <!-- Quando foto.jpg existir, ela aparece. Senão, fallback pras iniciais. -->
+      <!-- Foto real (foto.jpg ou foto.png na mesma pasta).
+           Se não existir, faz fallback pras iniciais. -->
       <img src="foto.jpg" alt="Gabriel"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-           style="width:100%;height:100%;object-fit:cover;border-radius:8px;display:block;" />
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
       <span class="initials" style="display:none;">GD</span>
     </div>
   </div>
@@ -228,16 +227,12 @@
 
     <h1 class="greeting">Hi, I'm Gabriel.</h1>
 
-    <p class="tagline">
-      Welcome to my place on the internet. From Brazil 🇧🇷.
-      <a href="https://github.com/gabbswq">More about me →</a>
-    </p>
-
     <div class="links">
-      <a href="https://github.com/gabbswq" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://x.com/gabbsweb3" target="_blank" rel="noopener">𝕏</a>
+      <a href="https://x.com/gabbsweb3" target="_blank" rel="noopener">𝕏 &nbsp;Twitter</a>
       <a href="https://linkedin.com/in/gabbswq" target="_blank" rel="noopener">LinkedIn</a>
       <a href="mailto:gabbsdiniz@proton.me">Email</a>
+      <!-- WhatsApp: troque 55XXXXXXXXXXX pelo seu número (DDI 55 + DDD + número, sem espaço/+) -->
+      <a href="https://wa.me/55XXXXXXXXXXX" target="_blank" rel="noopener">WhatsApp</a>
     </div>
 
     <div class="signup">
@@ -257,7 +252,6 @@
 
     <footer>
       <div>© 2026 · <a href="https://github.com/gabbswq">@gabbswq</a></div>
-      <div><a href="mailto:gabbsdiniz@proton.me">Contact</a></div>
     </footer>
 
   </div>
@@ -270,8 +264,7 @@
     const visitorEmail = document.getElementById('email-input').value;
     const subject = encodeURIComponent('Hi Gabriel — from your site');
     const body = encodeURIComponent(
-      'Hi Gabriel,\n\n' +
-      'I came from gabbswq.github.io. My e-mail: ' + visitorEmail + '\n\n— '
+      'Hi Gabriel,\n\nI came from gabbswq.github.io. My e-mail: ' + visitorEmail + '\n\n— '
     );
     window.location.href = 'mailto:gabbsdiniz@proton.me?subject=' + subject + '&body=' + body;
   });
