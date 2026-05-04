@@ -678,17 +678,14 @@
     }
 
 
-    /* ===== FIX MAIL ICON ===== */
-    .mail-icon {
-      width: 1.12rem;
-      height: 1.12rem;
-      display: inline-block;
+    /* ===== PROTON FINAL ICON FIX ===== */
+    .proton-logo {
+      width: 1.08rem;
+      height: 1.08rem;
+      flex: 0 0 1.08rem;
+      display: block;
       color: var(--text);
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.85;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+      fill: currentColor;
       opacity: 0.95;
       transition:
         color 0.22s ease,
@@ -696,122 +693,10 @@
         opacity 0.22s ease;
     }
 
-    .social-link:hover .mail-icon {
+    .social-link:hover .proton-logo {
       color: var(--accent);
       opacity: 1;
       transform: scale(1.08) rotate(-4deg);
-    }
-
-
-    /* ===== ICONS AND TEXT ALIGN FIX ===== */
-    .greeting {
-      line-height: 1.06;
-      overflow: visible;
-      padding-bottom: 0.08em;
-    }
-
-    .greeting span {
-      padding-bottom: 0.04em;
-    }
-
-    .profile-line {
-      max-width: 520px;
-      text-align: center;
-      margin-top: -0.18rem;
-      font-family: Manrope, Inter, sans-serif;
-      font-size: 0.98rem;
-      line-height: 1.75;
-      color: var(--text-soft);
-      letter-spacing: -0.02em;
-    }
-
-    .links {
-      align-items: center;
-      gap: 0.72rem;
-    }
-
-    .social-link {
-      min-height: 2.35rem;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.48rem;
-      line-height: 1;
-    }
-
-    .social-link span {
-      display: inline-flex;
-      align-items: center;
-      line-height: 1;
-    }
-
-    .brand-icon {
-      width: 1rem;
-      height: 1rem;
-      flex: 0 0 1rem;
-      display: block;
-      color: var(--text);
-      transition:
-        color 0.22s ease,
-        transform 0.22s ease,
-        opacity 0.22s ease;
-    }
-
-    .fill-icon {
-      fill: currentColor;
-    }
-
-    .stroke-icon {
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.85;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .social-link:hover .brand-icon {
-      color: var(--accent);
-      opacity: 1;
-      transform: scale(1.08) rotate(-4deg);
-    }
-
-    .footer-contact {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--text-muted);
-    }
-
-    .whatsapp-link {
-      position: relative;
-      color: var(--text-soft);
-      text-decoration: none;
-      transition:
-        color 0.22s ease,
-        transform 0.22s ease;
-    }
-
-    .whatsapp-link::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -0.18rem;
-      height: 1px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      opacity: 0.75;
-      transition: transform 0.25s ease;
-    }
-
-    .whatsapp-link:hover {
-      color: var(--accent);
-      transform: translateY(-1px);
-    }
-
-    .whatsapp-link:hover::after {
-      transform: scaleX(1);
     }
 
   </style>
@@ -851,11 +736,9 @@
             </a>
 
             <a class="social-link" href="mailto:gabbsdiniz@proton.me" aria-label="Proton Mail">
-              <svg class="brand-icon stroke-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3.5" y="5.5" width="17" height="13" rx="2.4"></rect>
-                <path d="M5.3 7.5 12 12.7l6.7-5.2"></path>
-                <path d="M5.4 17.1 9.9 12.9"></path>
-                <path d="M18.6 17.1 14.1 12.9"></path>
+              <svg class="proton-logo" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 6.8c0-1.55 1.25-2.8 2.8-2.8h10.4C18.75 4 20 5.25 20 6.8v10.4c0 1.55-1.25 2.8-2.8 2.8H6.8C5.25 20 4 18.75 4 17.2V6.8Z"/>
+                <path d="M7.25 16.8V7.2h5.35c2.55 0 4.15 1.48 4.15 3.72 0 2.22-1.6 3.68-4.15 3.68H9.95v2.2h-2.7Zm2.7-4.45h2.35c1.05 0 1.72-.52 1.72-1.43 0-.92-.67-1.45-1.72-1.45H9.95v2.88Z"/>
               </svg>
               <span>Proton</span>
             </a>
