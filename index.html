@@ -112,28 +112,7 @@
       gap: 1.5rem;
     }
 
-    /* Marker "Portfolio" */
-    .portfolio-marker {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.4rem 0.85rem;
-      border: 1px solid var(--border-strong);
-      border-radius: 100px;
-      font-family: 'Manrope', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--text-soft);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      align-self: flex-start;
-    }
-    .portfolio-marker .icon {
-      color: var(--accent);
-      font-size: 0.9rem;
-    }
-
-    .greeting {
+.greeting {
       font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
       font-weight: 800;
       font-size: 2.75rem;
@@ -170,6 +149,19 @@
       gap: 0.4rem;
     }
     .links a:hover { color: var(--accent); }
+
+    .links a:hover .social-icon {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
+    .social-icon {
+      width: 1rem;
+      height: 1rem;
+      display: block;
+      opacity: 0.9;
+      transition: opacity 0.15s, transform 0.15s;
+    }
     .links a .platform-icon {
       font-size: 0.95rem;
       opacity: 0.7;
@@ -228,6 +220,16 @@
     }
     footer a { color: var(--text-muted); text-decoration: underline; text-decoration-color: var(--text-muted); }
     footer a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+    .footer-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .footer-contact span {
+      color: var(--text-muted);
+    }
   </style>
 </head>
 <body>
@@ -245,21 +247,22 @@
   </div>
 
   <div class="content-col">
-
-    <span class="portfolio-marker">
-      <span class="icon">◆</span>
-      Portfolio
-    </span>
-
-    <h1 class="greeting">Hi, I'm Gabriel.</h1>
+<h1 class="greeting">Hi, I'm Gabriel.</h1>
     <p class="subtitle">Welcome to my profile.</p>
 
     <div class="links">
-      <a href="https://x.com/gabbsweb3" target="_blank" rel="noopener">𝕏 &nbsp;Twitter</a>
-      <a href="https://linkedin.com/in/gabbswq" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:gabbsdiniz@proton.me">Email</a>
-      <!-- WhatsApp: troque 55XXXXXXXXXXX pelo seu número (DDI 55 + DDD + número, sem espaço/+) -->
-      <a href="https://wa.me/5542988365669" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://x.com/gabbsweb3" target="_blank" rel="noopener" aria-label="Twitter / X">
+        <img class="social-icon" src="https://cdn.simpleicons.org/x/ededed" alt="" loading="lazy" />
+        <span>Twitter</span>
+      </a>
+      <a href="https://linkedin.com/in/gabbswq" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <img class="social-icon" src="https://cdn.simpleicons.org/linkedin/ededed" alt="" loading="lazy" />
+        <span>LinkedIn</span>
+      </a>
+      <a href="mailto:gabbsdiniz@proton.me" aria-label="Proton Mail">
+        <img class="social-icon" src="https://cdn.simpleicons.org/protonmail/ededed" alt="" loading="lazy" />
+        <span>Proton</span>
+      </a>
     </div>
 
     <div class="signup">
@@ -279,6 +282,10 @@
 
     <footer>
       <div>© 2026 · <a href="https://github.com/gabbswq">@gabbswq</a></div>
+      <div class="footer-contact">
+        <span>Contact</span>
+        <a href="https://wa.me/5542988365669" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
     </footer>
 
   </div>
