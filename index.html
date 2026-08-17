@@ -982,7 +982,118 @@
       transform: translateY(-1px);
     }
 
+    /* ===== NEWSLETTER + FLOATING WHATSAPP OVERRIDES ===== */
+    .signup form {
+      position: relative;
+    }
+
+    .signup input {
+      min-height: 5.35rem;
+      padding: 0 5rem 0 1.65rem;
+      border-color: rgba(247, 147, 26, 0.72);
+      border-radius: 18px;
+      background:
+        linear-gradient(90deg, rgba(247, 147, 26, 0.12), rgba(0, 0, 0, 0.02)),
+        rgba(0, 0, 0, 0.28);
+      font-size: clamp(1.05rem, 2vw, 1.6rem);
+      box-shadow:
+        0 0 0 6px rgba(247, 147, 26, 0.07),
+        inset 0 0 1.2rem rgba(247, 147, 26, 0.08);
+    }
+
+    .signup button {
+      width: 5.35rem;
+      height: 5.35rem;
+      flex: 0 0 5.35rem;
+      border-radius: 18px;
+      font-size: 1.85rem;
+    }
+
+    .footer-contact {
+      gap: 0.85rem;
+    }
+
+    .whatsapp-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .whatsapp-link::before {
+      content: "";
+      display: inline-block !important;
+      width: 0.62rem;
+      height: 0.62rem;
+      border-radius: 999px;
+      background: #8df059;
+      box-shadow: 0 0 1rem rgba(141, 240, 89, 0.45);
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: clamp(1rem, 4vw, 2rem);
+      bottom: clamp(1rem, 4vw, 2rem);
+      z-index: 10;
+      display: grid;
+      place-items: center;
+      width: clamp(4.6rem, 9vw, 6.5rem);
+      aspect-ratio: 1;
+      border-radius: 999px;
+      background: #8df059;
+      color: #173725;
+      box-shadow: 0 1.5rem 4.5rem rgba(141, 240, 89, 0.28);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .whatsapp-float:hover,
+    .whatsapp-float:focus-visible {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow:
+        0 1.5rem 4.5rem rgba(141, 240, 89, 0.4),
+        0 0 0 6px rgba(141, 240, 89, 0.18);
+      outline: none;
+    }
+
+    .whatsapp-float svg {
+      width: 56%;
+      height: 56%;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    @media (max-width: 520px) {
+      .signup form {
+        gap: 0.5rem;
+      }
+
+      .signup input,
+      .signup button {
+        min-height: 4.2rem;
+        height: 4.2rem;
+      }
+
+      .signup input {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        font-size: 1rem;
+      }
+
+      .signup button {
+        width: 4.2rem;
+        flex-basis: 4.2rem;
+      }
+    }
   </style>
+  <script>
+    window.PORTFOLIO_CONFIG = {
+      supabaseUrl: "",
+      supabasePublishableKey: "",
+      newsletterTable: "newsletter_subscribers"
+    };
+  </script>
 </head>
 
 <body>
@@ -1030,23 +1141,77 @@
     </section>
 </main>
 
+  <a
+    class="whatsapp-float"
+    href="https://wa.me/5542988365669"
+    target="_blank"
+    rel="noopener"
+    aria-label="Fale comigo no WhatsApp"
+    title="Fale comigo no WhatsApp"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M8.5 10.4c.4 2 2.9 4.4 4.9 4.9.7.2 1.1 0 1.5-.5l.7-.9c.2-.3.6-.4.9-.2l2.1 1a.7.7 0 0 1 .4.8 4 4 0 0 1-3.9 2.7c-5.1 0-9.3-4.2-9.3-9.3A4 4 0 0 1 8.5 5a.7.7 0 0 1 .8.4l1 2.1c.2.3.1.7-.2.9l-.9.7c-.5.4-.7.8-.7 1.3Z"></path>
+      <path d="M12 22a9.8 9.8 0 0 1-4.7-1.2L3 22l1.2-4.2A10 10 0 1 1 12 22Z"></path>
+    </svg>
+  </a>
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
   <script>
     const form = document.getElementById("contact-form");
+    const note = document.querySelector(".note");
+    const config = window.PORTFOLIO_CONFIG || {};
 
-    form.addEventListener("submit", function (e) {
+    async function saveSubscriber(email) {
+      const { supabaseUrl, supabasePublishableKey, newsletterTable } = config;
+
+      if (!supabaseUrl || !supabasePublishableKey) {
+        localStorage.setItem("portfolio-newsletter-email", email);
+        return { configured: false };
+      }
+
+      const response = await fetch(`${supabaseUrl}/rest/v1/${newsletterTable || "newsletter_subscribers"}`, {
+        method: "POST",
+        headers: {
+          apikey: supabasePublishableKey,
+          authorization: `Bearer ${supabasePublishableKey}`,
+          "content-type": "application/json",
+          prefer: "return=minimal"
+        },
+        body: JSON.stringify({
+          email,
+          source: "gabbswq.github.io"
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error("Supabase insert failed");
+      }
+
+      return { configured: true };
+    }
+
+    form.addEventListener("submit", async function (e) {
       e.preventDefault();
 
-      const visitorEmail = document.getElementById("email-input").value;
-      const subject = encodeURIComponent("Hi Gabriel — from your site");
-      const body = encodeURIComponent(`Hi Gabriel,
+      const visitorEmail = document.getElementById("email-input").value.trim().toLowerCase();
 
-I came from gabbswq.github.io. My e-mail: ${visitorEmail}
+      if (!visitorEmail) {
+        note.textContent = "Digite um e-mail para continuar.";
+        return;
+      }
 
-—`);
+      note.textContent = "Salvando...";
 
-      window.location.href = `mailto:gabbsdiniz@proton.me?subject=${subject}&body=${body}`;
+      try {
+        const result = await saveSubscriber(visitorEmail);
+        note.textContent = result.configured
+          ? "Pronto, e-mail cadastrado."
+          : "Pronto. Configure o Supabase para salvar no banco online.";
+        form.reset();
+      } catch (error) {
+        note.textContent = "Nao consegui salvar agora. Tente de novo em instantes.";
+      }
     });
 
     if (window.gsap) {
