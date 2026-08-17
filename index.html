@@ -1005,9 +1005,8 @@
       animation-delay: 0.12s;
     }
 
-    .kicker,
     .greeting span,
-    .profile-line,
+    .quote-line,
     .links,
     .signup,
     footer {
@@ -1017,10 +1016,10 @@
     .greeting span:nth-child(1) { animation-delay: 0.08s; }
     .greeting span:nth-child(2) { animation-delay: 0.16s; }
     .greeting span:nth-child(3) { animation-delay: 0.24s; }
-    .profile-line { animation-delay: 0.32s; }
-    .links { animation-delay: 0.4s; }
-    .signup { animation-delay: 0.48s; }
-    footer { animation-delay: 0.56s; }
+    .quote-line { animation-delay: 0.28s; }
+    .links { animation-delay: 0.38s; }
+    .signup { animation-delay: 0.46s; }
+    footer { animation-delay: 0.54s; }
 
     @keyframes softReveal {
       from {
@@ -1347,8 +1346,8 @@
       max-width: 560px;
       color: rgba(237, 237, 237, 0.72);
       font-family: Manrope, Inter, sans-serif;
-      font-size: 0.9rem;
-      line-height: 1.65;
+      font-size: 1rem;
+      line-height: 1.7;
       font-style: italic;
     }
 
@@ -1364,10 +1363,52 @@
       min-height: 6rem;
     }
 
+    .contact-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gmail-button {
+      width: 3.65rem;
+      height: 3.65rem;
+      min-height: 3.65rem;
+      flex: 0 0 3.65rem;
+      padding: 0;
+      border-radius: 999px;
+    }
+
+    .site-footer {
+      position: relative;
+      z-index: 2;
+      display: block;
+      width: min(1320px, calc(100% - 3rem));
+      margin: 0 auto;
+      padding: 0 0 3rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    .site-footer > div {
+      padding-top: 1.6rem;
+    }
+
+    .site-footer .footer-mail {
+      color: var(--text-soft);
+    }
+
     @media (min-width: 860px) {
       .layout {
-        grid-template-columns: minmax(0, 1.18fr) minmax(390px, 0.82fr);
-        gap: 4.25rem;
+        max-width: 1400px;
+        grid-template-columns: minmax(0, 1.3fr) minmax(390px, 0.7fr);
+        gap: 4rem;
+      }
+
+      .photo {
+        aspect-ratio: 1.16 / 1;
       }
     }
 
@@ -1377,7 +1418,7 @@
       }
 
       .photo {
-        aspect-ratio: 1.18 / 1;
+        aspect-ratio: 1 / 1;
       }
 
       .ambient-visual img {
@@ -1405,7 +1446,7 @@
 
       .quote-line {
         max-width: 360px;
-        font-size: 0.82rem;
+        font-size: 0.86rem;
         line-height: 1.55;
         overflow-wrap: anywhere;
         text-wrap: balance;
@@ -1418,6 +1459,7 @@
       .contact-actions {
         display: flex;
         align-items: stretch;
+        justify-content: center;
       }
 
       .mail-button {
@@ -1431,23 +1473,24 @@
       }
 
       .gmail-button {
-        flex: 0 0 3.4rem;
+        flex: 0 0 3.65rem;
       }
 
       .note {
         text-align: center;
       }
 
-      footer {
+      .site-footer {
+        width: min(100% - 2rem, 35rem);
         max-width: 100%;
         line-height: 1.55;
       }
 
-      footer > div {
+      .site-footer > div {
         max-width: 100%;
       }
 
-      .footer-mail {
+      .site-footer .footer-mail {
         overflow-wrap: anywhere;
       }
     }
@@ -1475,13 +1518,11 @@
         </div>
 
         <div class="content-col">
-          <p class="kicker">Gabriel Diniz</p>
           <h1 class="greeting">
             <span>Build</span> <span>in</span><br><span>public.</span>
           </h1>
 
-          <p class="profile-line">Construo estruturas na internet com automações, funis e distribuição para direct response. Exploro n8n, WhatsApp, tráfego pago e lançamentos para transformar ideias em operação.</p>
-          <p class="quote-line">"Se você não constrói seu sonho, alguém vai te contratar para construir o dele."</p>
+          <p class="quote-line">"Se você não constrói seu sonho, alguém vai construir o dele."</p>
 
           <div class="links">
             <a class="social-link icon-link" href="https://x.com/gabbsweb3" target="_blank" rel="noopener" aria-label="X">
@@ -1506,13 +1547,6 @@
 
           <div class="signup">
             <div class="contact-actions" aria-label="Contato por e-mail">
-              <a class="mail-button" href="mailto:gabbsdiniz@proton.me?subject=Contato%20pelo%20portfolio">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M4 7.5 12 13l8-5.5"></path>
-                  <path d="M5 5h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"></path>
-                </svg>
-                gabbsdiniz@proton.me
-              </a>
               <a
                 class="gmail-button"
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=gabbsdiniz@proton.me&su=Contato%20pelo%20portfolio"
@@ -1527,19 +1561,14 @@
                 </svg>
               </a>
             </div>
-            <p class="note">Para trocar ideia sobre tecnologia, produto ou construção em público.</p>
           </div>
-
-          <footer>
-            <div>© 2026 · Todos os direitos reservados · <a class="footer-mail" href="mailto:gabbsdiniz@proton.me">gabbsdiniz@proton.me</a></div>
-          </footer>
         </div>
       </div>
     </section>
 
     <section class="stack-section" aria-label="Stack e foco técnico">
       <div class="stack-header">
-        <h2>Construo sistemas que fazem uma oferta andar.</h2>
+        <h2>Construo sistemas que fazem ofertas darem ROI.</h2>
         <p>Da primeira ideia à distribuição: automações, páginas, funis e interfaces pensadas para unir design, operação e crescimento.</p>
       </div>
       <div class="stack-grid">
@@ -1557,6 +1586,10 @@
         <article class="stack-pill"><strong>Build in public</strong><span>Aprendizado, construção e bastidores compartilhados no caminho.</span></article>
       </div>
     </section>
+
+    <footer class="site-footer">
+      <div>© 2026 · Todos os direitos reservados · <a class="footer-mail" href="https://mail.google.com/mail/?view=cm&fs=1&to=gabbsdiniz@proton.me&su=Contato%20pelo%20portfolio" target="_blank" rel="noopener">gabbsdiniz@proton.me</a></div>
+    </footer>
 </main>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
