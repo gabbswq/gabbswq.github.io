@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Gabriel</title>
-  <meta name="description" content="Gabriel · Personal portfolio." />
+  <title>Gabriel Diniz — Automação e Build in Public</title>
+  <meta name="description" content="Gabriel Diniz constrói estruturas na internet com automações, funis e distribuição para direct response." />
 
-  <meta property="og:title" content="Gabriel" />
-  <meta property="og:description" content="Personal portfolio." />
+  <meta property="og:title" content="Gabriel Diniz — Automação e Build in Public" />
+  <meta property="og:description" content="Automações, funis e estruturas de distribuição para direct response." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://gabbswq.github.io" />
   <meta property="og:image" content="https://gabbswq.github.io/hero.png" />
@@ -1303,6 +1303,163 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
+
+    /* ===== CURRENT VISUAL PASS ===== */
+    .layout {
+      max-width: 1320px;
+    }
+
+    .photo {
+      aspect-ratio: 1.32 / 1;
+    }
+
+    .ambient-visual img {
+      right: -2vw;
+      bottom: -5vh;
+      width: min(106vw, 1700px);
+      opacity: 0.76;
+      filter: brightness(0.96) contrast(1.08) saturate(1.24);
+      mask-image: radial-gradient(
+        ellipse at 72% 68%,
+        black 0%,
+        black 40%,
+        rgba(0,0,0,0.78) 60%,
+        transparent 91%
+      );
+      -webkit-mask-image: radial-gradient(
+        ellipse at 72% 68%,
+        black 0%,
+        black 40%,
+        rgba(0,0,0,0.78) 60%,
+        transparent 91%
+      );
+    }
+
+    .ambient-visual::before {
+      background:
+        radial-gradient(circle at 81% 73%, rgba(247,147,26,0.14), transparent 34%),
+        radial-gradient(circle at 82% 56%, rgba(125,80,255,0.09), transparent 34%),
+        linear-gradient(90deg, rgba(5,5,5,0.99) 0%, rgba(5,5,5,0.92) 38%, rgba(5,5,5,0.54) 72%, rgba(5,5,5,0.62) 100%),
+        linear-gradient(to bottom, rgba(5,5,5,0.28), rgba(5,5,5,0.72));
+    }
+
+    .quote-line {
+      max-width: 560px;
+      color: rgba(237, 237, 237, 0.72);
+      font-family: Manrope, Inter, sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    .stack-header h2 {
+      max-width: 760px;
+    }
+
+    .stack-header p {
+      max-width: 430px;
+    }
+
+    .stack-pill {
+      min-height: 6rem;
+    }
+
+    @media (min-width: 860px) {
+      .layout {
+        grid-template-columns: minmax(0, 1.18fr) minmax(390px, 0.82fr);
+        gap: 4.25rem;
+      }
+    }
+
+    @media (max-width: 859px) {
+      .hero {
+        padding-top: 1.25rem;
+      }
+
+      .photo {
+        aspect-ratio: 1.18 / 1;
+      }
+
+      .ambient-visual img {
+        right: -25vw;
+        bottom: -2vh;
+        width: 150vw;
+        opacity: 0.52;
+        filter: brightness(0.94) contrast(1.08) saturate(1.18);
+      }
+
+      .ambient-visual::before {
+        background:
+          radial-gradient(circle at 75% 76%, rgba(247,147,26,0.12), transparent 36%),
+          linear-gradient(90deg, rgba(5,5,5,0.98) 0%, rgba(5,5,5,0.72) 72%, rgba(5,5,5,0.66) 100%),
+          linear-gradient(to bottom, rgba(5,5,5,0.28), rgba(5,5,5,0.76));
+      }
+
+      .profile-line,
+      .quote-line {
+        width: 100%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .quote-line {
+        max-width: 360px;
+        font-size: 0.82rem;
+        line-height: 1.55;
+        overflow-wrap: anywhere;
+        text-wrap: balance;
+      }
+
+      .links {
+        justify-content: center;
+      }
+
+      .contact-actions {
+        display: flex;
+        align-items: stretch;
+      }
+
+      .mail-button {
+        min-width: 0;
+        flex: 1 1 auto;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .gmail-button {
+        flex: 0 0 3.4rem;
+      }
+
+      .note {
+        text-align: center;
+      }
+
+      footer {
+        max-width: 100%;
+        line-height: 1.55;
+      }
+
+      footer > div {
+        max-width: 100%;
+      }
+
+      .footer-mail {
+        overflow-wrap: anywhere;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .photo,
+      .photo img,
+      .stack-pill,
+      .ambient-visual img {
+        transition: none !important;
+      }
+    }
   </style>
 </head>
 
@@ -1323,7 +1480,8 @@
             <span>Build</span> <span>in</span><br><span>public.</span>
           </h1>
 
-          <p class="profile-line">Se você não constrói seu sonho, alguém vai te contratar para construir o dele.</p>
+          <p class="profile-line">Construo estruturas na internet com automações, funis e distribuição para direct response. Exploro n8n, WhatsApp, tráfego pago e lançamentos para transformar ideias em operação.</p>
+          <p class="quote-line">"Se você não constrói seu sonho, alguém vai te contratar para construir o dele."</p>
 
           <div class="links">
             <a class="social-link icon-link" href="https://x.com/gabbsweb3" target="_blank" rel="noopener" aria-label="X">
@@ -1381,18 +1539,22 @@
 
     <section class="stack-section" aria-label="Stack e foco técnico">
       <div class="stack-header">
-        <h2>Explorando tecnologia moderna, produto e automação.</h2>
-        <p>Uma base web sólida, com curiosidade por interfaces animadas, agentes, dados e ferramentas que aceleram criação.</p>
+        <h2>Construo sistemas que fazem uma oferta andar.</h2>
+        <p>Da primeira ideia à distribuição: automações, páginas, funis e interfaces pensadas para unir design, operação e crescimento.</p>
       </div>
       <div class="stack-grid">
-        <article class="stack-pill"><strong>JavaScript</strong><span>Interações, GSAP, Anime.js e interfaces vivas.</span></article>
-        <article class="stack-pill"><strong>TypeScript</strong><span>Aplicações mais previsíveis e código fácil de evoluir.</span></article>
+        <article class="stack-pill"><strong>n8n</strong><span>Workflows, integrações e automações que conectam a operação.</span></article>
+        <article class="stack-pill"><strong>Automações</strong><span>Tarefas, leads e processos com menos trabalho manual.</span></article>
+        <article class="stack-pill"><strong>Funis</strong><span>Captação, qualificação, follow-up e jornadas de conversão.</span></article>
+        <article class="stack-pill"><strong>WhatsApp</strong><span>Canais de distribuição, atendimento e relacionamento.</span></article>
+        <article class="stack-pill"><strong>Direct response</strong><span>Oferta, copy, tráfego pago e métricas que orientam ação.</span></article>
+        <article class="stack-pill"><strong>Lançamentos</strong><span>Estrutura, contingência e ritmo para colocar produtos no ar.</span></article>
         <article class="stack-pill"><strong>Next.js</strong><span>Sites rápidos, rotas modernas e deploy limpo.</span></article>
-        <article class="stack-pill"><strong>Python</strong><span>Automação, scripts e primeiros agentes práticos.</span></article>
-        <article class="stack-pill"><strong>Java</strong><span>Base forte para backend, arquitetura e orientação a objetos.</span></article>
-        <article class="stack-pill"><strong>GitHub</strong><span>Construção pública, versionamento e Pages.</span></article>
-        <article class="stack-pill"><strong>UI Systems</strong><span>Componentes polidos, acessíveis e reutilizáveis.</span></article>
-        <article class="stack-pill"><strong>Bitcoin</strong><span>Curiosidade por soberania, redes e tecnologia aberta.</span></article>
+        <article class="stack-pill"><strong>JavaScript</strong><span>Interações, GSAP, Anime.js e interfaces vivas.</span></article>
+        <article class="stack-pill"><strong>TypeScript</strong><span>Aplicações mais previsíveis e fáceis de evoluir.</span></article>
+        <article class="stack-pill"><strong>Python</strong><span>Scripts, automação e agentes práticos para a operação.</span></article>
+        <article class="stack-pill"><strong>UI & Motion</strong><span>Design de produto, sistemas visuais e movimento com intenção.</span></article>
+        <article class="stack-pill"><strong>Build in public</strong><span>Aprendizado, construção e bastidores compartilhados no caminho.</span></article>
       </div>
     </section>
 </main>
@@ -1435,18 +1597,18 @@
         const y = (e.clientY - rect.top) / rect.height - 0.5;
 
         gsap.to(photo, {
-          rotateY: x * 5,
-          rotateX: -y * 5,
-          y: -6,
-          scale: 1.012,
+          rotateY: x * 6,
+          rotateX: -y * 6,
+          y: -8,
+          scale: 1.02,
           duration: 0.45,
           ease: "power3.out"
         });
 
         gsap.to(".photo img", {
-          x: x * 12,
-          y: y * 12,
-          scale: 1.04,
+          x: x * 16,
+          y: y * 16,
+          scale: 1.06,
           duration: 0.55,
           ease: "power3.out"
         });
@@ -1470,6 +1632,27 @@
           ease: "power3.out"
         });
       });
+
+      const ambientImage = document.querySelector(".ambient-visual img");
+      let scrollFrame = null;
+
+      window.addEventListener("scroll", function () {
+        if (scrollFrame) return;
+
+        scrollFrame = requestAnimationFrame(function () {
+          const scrollProgress = Math.min(window.scrollY / Math.max(window.innerHeight, 1), 1.2);
+
+          gsap.to(ambientImage, {
+            x: scrollProgress * -18,
+            y: scrollProgress * -34,
+            duration: 0.8,
+            ease: "power3.out",
+            overwrite: "auto"
+          });
+
+          scrollFrame = null;
+        });
+      }, { passive: true });
     }
   </script>
 </body>

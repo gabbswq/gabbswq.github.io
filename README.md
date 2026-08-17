@@ -7,8 +7,9 @@ Meu site portfólio pessoal — hospedado no GitHub Pages.
 ## Stack
 
 - HTML5 + CSS puro (sem build, sem framework)
-- Fontes do Google Fonts (Inter + JetBrains Mono)
-- Animações de scroll com IntersectionObserver
+- Fontes do Google Fonts (Manrope + Inter)
+- GSAP para interação da foto, parallax sutil e entrada dos cards
+- Conteúdo sobre n8n, automações, funis, WhatsApp e direct response
 
 ## Estrutura
 
@@ -25,7 +26,7 @@ O portfolio usa links simples de e-mail:
 - `mailto:` para abrir o app de e-mail padrão.
 - Link direto para o Gmail Compose com `gabbsdiniz@proton.me` como destinatário.
 
-Não há captura de leads, banco de dados ou integração com Supabase nesta versão.
+Não há captura de leads, banco de dados ou integração com Supabase nesta versão. O contato é feito diretamente por e-mail.
 
 ## Por quê single-file?
 
