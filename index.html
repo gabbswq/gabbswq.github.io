@@ -982,7 +982,126 @@
       transform: translateY(-1px);
     }
 
-    /* ===== NEWSLETTER + FLOATING WHATSAPP OVERRIDES ===== */
+    /* ===== REDESIGN OVERRIDES: SOCIAL ICONS, NEWSLETTER, STACK ===== */
+    .kicker {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent);
+      font-family: Manrope, Inter, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .photo-col,
+    .content-col {
+      animation: softReveal 0.9s ease both;
+    }
+
+    .content-col {
+      animation-delay: 0.12s;
+    }
+
+    .kicker,
+    .greeting span,
+    .profile-line,
+    .links,
+    .signup,
+    footer {
+      animation: softRise 0.8s ease both;
+    }
+
+    .greeting span:nth-child(1) { animation-delay: 0.08s; }
+    .greeting span:nth-child(2) { animation-delay: 0.16s; }
+    .greeting span:nth-child(3) { animation-delay: 0.24s; }
+    .profile-line { animation-delay: 0.32s; }
+    .links { animation-delay: 0.4s; }
+    .signup { animation-delay: 0.48s; }
+    footer { animation-delay: 0.56s; }
+
+    @keyframes softReveal {
+      from {
+        transform: translateY(1.1rem);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes softRise {
+      from {
+        transform: translateY(0.8rem);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    .kicker::before {
+      content: "";
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 1rem rgba(247, 147, 26, 0.55);
+    }
+
+    .greeting {
+      max-width: 720px;
+      font-size: clamp(3.15rem, 6.1vw, 6.6rem);
+      letter-spacing: -0.075em;
+    }
+
+    .profile-line {
+      max-width: 620px;
+      text-align: left;
+    }
+
+    .links {
+      justify-content: flex-start;
+      gap: 0.9rem;
+    }
+
+    .icon-link {
+      display: grid;
+      place-items: center;
+      width: 3.05rem;
+      height: 3.05rem;
+      min-width: 0;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.035);
+      color: var(--text-soft);
+      transition: transform 0.22s ease, border-color 0.22s ease, color 0.22s ease, background 0.22s ease;
+    }
+
+    .icon-link::before {
+      display: none;
+    }
+
+    .icon-link:hover,
+    .icon-link:focus-visible {
+      transform: translateY(-3px);
+      border-color: rgba(247, 147, 26, 0.55);
+      background: rgba(247, 147, 26, 0.08);
+      color: var(--accent);
+      outline: none;
+    }
+
+    .icon-link svg {
+      width: 1.32rem;
+      height: 1.32rem;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.85;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
     .signup form {
       position: relative;
     }
@@ -1009,62 +1128,126 @@
       font-size: 1.85rem;
     }
 
+    footer {
+      justify-content: center;
+      text-align: center;
+    }
+
     .footer-contact {
-      gap: 0.85rem;
+      display: none !important;
     }
 
-    .whatsapp-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
+    .footer-mail {
+      color: var(--text-soft);
+      text-decoration: underline;
+      text-underline-offset: 0.22em;
     }
 
-    .whatsapp-link::before {
-      content: "";
-      display: inline-block !important;
-      width: 0.62rem;
-      height: 0.62rem;
-      border-radius: 999px;
-      background: #8df059;
-      box-shadow: 0 0 1rem rgba(141, 240, 89, 0.45);
+    .stack-section {
+      position: relative;
+      z-index: 2;
+      width: min(1160px, calc(100% - 3rem));
+      margin: -3rem auto 6rem;
+      padding: clamp(2rem, 4vw, 3.5rem) 0 0;
+      border-top: 1px solid var(--border);
     }
 
-    .whatsapp-float {
-      position: fixed;
-      right: clamp(1rem, 4vw, 2rem);
-      bottom: clamp(1rem, 4vw, 2rem);
-      z-index: 10;
+    .stack-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .stack-header h2 {
+      max-width: 680px;
+      font-family: Manrope, Inter, sans-serif;
+      font-size: clamp(1.75rem, 4vw, 3.8rem);
+      line-height: 1.04;
+      letter-spacing: -0.055em;
+    }
+
+    .stack-header p {
+      max-width: 360px;
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+
+    .stack-grid {
       display: grid;
-      place-items: center;
-      width: clamp(4.6rem, 9vw, 6.5rem);
-      aspect-ratio: 1;
-      border-radius: 999px;
-      background: #8df059;
-      color: #173725;
-      box-shadow: 0 1.5rem 4.5rem rgba(141, 240, 89, 0.28);
-      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.8rem;
     }
 
-    .whatsapp-float:hover,
-    .whatsapp-float:focus-visible {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow:
-        0 1.5rem 4.5rem rgba(141, 240, 89, 0.4),
-        0 0 0 6px rgba(141, 240, 89, 0.18);
-      outline: none;
+    .stack-pill {
+      min-height: 5.6rem;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.025);
+      color: var(--text);
+      overflow: hidden;
+      position: relative;
     }
 
-    .whatsapp-float svg {
-      width: 56%;
-      height: 56%;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+    .stack-pill::after {
+      content: "";
+      position: absolute;
+      inset: auto -30% -55% 20%;
+      height: 4.4rem;
+      background: radial-gradient(circle, rgba(247, 147, 26, 0.18), transparent 68%);
+      opacity: 0;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .stack-pill:hover::after {
+      opacity: 1;
+      transform: translateY(-0.4rem);
+    }
+
+    .stack-pill strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-family: Manrope, Inter, sans-serif;
+      font-size: 1rem;
+    }
+
+    .stack-pill span {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      line-height: 1.45;
     }
 
     @media (max-width: 520px) {
+      .greeting {
+        font-size: clamp(2.45rem, 12.5vw, 3.6rem);
+        max-width: 100%;
+        overflow-wrap: normal;
+      }
+
+      .profile-line {
+        text-align: left;
+        max-width: 21rem;
+        font-size: 0.92rem;
+        overflow-wrap: break-word;
+      }
+
+      .links {
+        justify-content: flex-start;
+      }
+
+      .layout,
+      .photo-col,
+      .content-col,
+      .photo,
+      .signup,
+      .signup form {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+      }
+
       .signup form {
         gap: 0.5rem;
       }
@@ -1084,6 +1267,25 @@
       .signup button {
         width: 4.2rem;
         flex-basis: 4.2rem;
+      }
+
+      .stack-section {
+        width: min(100% - 2rem, 35rem);
+        margin-top: 0;
+      }
+
+      .stack-header {
+        display: grid;
+      }
+
+      .stack-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (min-width: 521px) and (max-width: 900px) {
+      .stack-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
   </style>
@@ -1108,16 +1310,32 @@
         </div>
 
         <div class="content-col">
+          <p class="kicker">Gabriel Diniz</p>
           <h1 class="greeting">
-            <span>Welcome</span> <span>to</span> <span>my</span> <span>profile.</span>
+            <span>Build</span> <span>in</span><br><span>public.</span>
           </h1>
 
-          <p class="profile-line">Se você não constrói seu sonho, alguém vai te contratar para construir o dele!</p>
+          <p class="profile-line">Se você não constrói seu sonho, alguém vai te contratar para construir o dele.</p>
 
           <div class="links">
-            <a class="social-link text-only-link" href="https://x.com/gabbsweb3" target="_blank" rel="noopener">Twitter</a>
-            <a class="social-link text-only-link" href="https://linkedin.com/in/gabbswq" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="social-link text-only-link" href="mailto:gabbsdiniz@proton.me">Proton</a>
+            <a class="social-link icon-link" href="https://x.com/gabbsweb3" target="_blank" rel="noopener" aria-label="X">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 4l16 16"></path>
+                <path d="M20 4 4 20"></path>
+              </svg>
+            </a>
+            <a class="social-link icon-link" href="https://linkedin.com/in/gabbswq" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M16 8a6 6 0 0 1 6 6v6h-4v-6a2 2 0 0 0-4 0v6h-4v-12h4v1.8A4.8 4.8 0 0 1 16 8Z"></path>
+                <path d="M2 9h4v11H2z"></path>
+                <path d="M4 4.8v.1"></path>
+              </svg>
+            </a>
+            <a class="social-link icon-link" href="https://github.com/gabbswq" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-1-2.6c3.3-.4 6.8-1.6 6.8-7.3a5.7 5.7 0 0 0-1.6-4 5.3 5.3 0 0 0-.1-4s-1.3-.4-4.1 1.5a14 14 0 0 0-7.4 0C5.8-.1 4.5.3 4.5.3a5.3 5.3 0 0 0-.1 4 5.7 5.7 0 0 0-1.6 4c0 5.7 3.5 6.9 6.8 7.3a3.4 3.4 0 0 0-1 2.6V22"></path>
+              </svg>
+            </a>
           </div>
 
           <div class="signup">
@@ -1129,31 +1347,29 @@
           </div>
 
           <footer>
-            <div>© 2026 · <a href="https://github.com/gabbswq">@gabbswq</a></div>
-
-            <div class="footer-contact">
-              <span>Contact</span>
-              <a class="whatsapp-link" href="https://wa.me/5542988365669" target="_blank" rel="noopener">WhatsApp</a>
-            </div>
+            <div>© 2026 · Todos os direitos reservados · <a class="footer-mail" href="mailto:gabbsdiniz@proton.me">gabbsdiniz@proton.me</a></div>
           </footer>
         </div>
       </div>
     </section>
-</main>
 
-  <a
-    class="whatsapp-float"
-    href="https://wa.me/5542988365669"
-    target="_blank"
-    rel="noopener"
-    aria-label="Fale comigo no WhatsApp"
-    title="Fale comigo no WhatsApp"
-  >
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M8.5 10.4c.4 2 2.9 4.4 4.9 4.9.7.2 1.1 0 1.5-.5l.7-.9c.2-.3.6-.4.9-.2l2.1 1a.7.7 0 0 1 .4.8 4 4 0 0 1-3.9 2.7c-5.1 0-9.3-4.2-9.3-9.3A4 4 0 0 1 8.5 5a.7.7 0 0 1 .8.4l1 2.1c.2.3.1.7-.2.9l-.9.7c-.5.4-.7.8-.7 1.3Z"></path>
-      <path d="M12 22a9.8 9.8 0 0 1-4.7-1.2L3 22l1.2-4.2A10 10 0 1 1 12 22Z"></path>
-    </svg>
-  </a>
+    <section class="stack-section" aria-label="Stack e foco técnico">
+      <div class="stack-header">
+        <h2>Explorando tecnologia moderna, produto e automação.</h2>
+        <p>Uma base web sólida, com curiosidade por interfaces animadas, agentes, dados e ferramentas que aceleram criação.</p>
+      </div>
+      <div class="stack-grid">
+        <article class="stack-pill"><strong>JavaScript</strong><span>Interações, GSAP, Anime.js e interfaces vivas.</span></article>
+        <article class="stack-pill"><strong>TypeScript</strong><span>Aplicações mais previsíveis e código fácil de evoluir.</span></article>
+        <article class="stack-pill"><strong>Next.js</strong><span>Sites rápidos, rotas modernas e deploy limpo.</span></article>
+        <article class="stack-pill"><strong>Python</strong><span>Automação, scripts e primeiros agentes práticos.</span></article>
+        <article class="stack-pill"><strong>Supabase</strong><span>Banco, auth e APIs para protótipos reais.</span></article>
+        <article class="stack-pill"><strong>GitHub</strong><span>Construção pública, versionamento e Pages.</span></article>
+        <article class="stack-pill"><strong>UI Systems</strong><span>Componentes polidos, acessíveis e reutilizáveis.</span></article>
+        <article class="stack-pill"><strong>Bitcoin</strong><span>Curiosidade por soberania, redes e tecnologia aberta.</span></article>
+      </div>
+    </section>
+</main>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
@@ -1215,50 +1431,31 @@
     });
 
     if (window.gsap) {
-      gsap.set([".photo-col", ".content-col"], {
+      gsap.set(".stack-pill", {
         opacity: 0,
-        y: 26,
-        filter: "blur(10px)"
+        y: 24
       });
 
-      gsap.set(".greeting span", {
-        opacity: 0,
-        y: 48,
-        rotateX: 55
-      });
+      const stackObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
 
-      gsap.set([".profile-line", ".links", ".signup", "footer"], {
-        opacity: 0,
-        y: 18
-      });
+          gsap.to(".stack-pill", {
+            opacity: 1,
+            y: 0,
+            stagger: 0.07,
+            duration: 0.7,
+            ease: "power3.out"
+          });
 
-      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+          stackObserver.disconnect();
+        });
+      }, { threshold: 0.22 });
 
-      tl.to(".photo-col", {
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-        duration: 1.05
-      })
-      .to(".content-col", {
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-        duration: 0.9
-      }, "-=0.72")
-      .to(".greeting span", {
-        opacity: 1,
-        y: 0,
-        rotateX: 0,
-        stagger: 0.08,
-        duration: 0.85
-      }, "-=0.55")
-      .to([".profile-line", ".links", ".signup", "footer"], {
-        opacity: 1,
-        y: 0,
-        stagger: 0.08,
-        duration: 0.65
-      }, "-=0.45");
+      const stackSection = document.querySelector(".stack-section");
+      if (stackSection) {
+        stackObserver.observe(stackSection);
+      }
 
       const photo = document.querySelector(".photo");
 
