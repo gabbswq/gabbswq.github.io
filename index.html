@@ -1102,30 +1102,61 @@
       stroke-linejoin: round;
     }
 
-    .signup form {
-      position: relative;
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      padding-top: 0.25rem;
     }
 
-    .signup input {
-      min-height: 5.35rem;
-      padding: 0 5rem 0 1.65rem;
-      border-color: rgba(247, 147, 26, 0.72);
-      border-radius: 18px;
-      background:
-        linear-gradient(90deg, rgba(247, 147, 26, 0.12), rgba(0, 0, 0, 0.02)),
-        rgba(0, 0, 0, 0.28);
-      font-size: clamp(1.05rem, 2vw, 1.6rem);
-      box-shadow:
-        0 0 0 6px rgba(247, 147, 26, 0.07),
-        inset 0 0 1.2rem rgba(247, 147, 26, 0.08);
+    .mail-button,
+    .gmail-button {
+      display: inline-flex;
+      min-height: 3.4rem;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      font-family: Manrope, Inter, sans-serif;
+      font-size: 0.94rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease, color 0.22s ease;
     }
 
-    .signup button {
-      width: 5.35rem;
-      height: 5.35rem;
-      flex: 0 0 5.35rem;
-      border-radius: 18px;
-      font-size: 1.85rem;
+    .mail-button {
+      padding: 0 1.25rem;
+      background: rgba(247, 147, 26, 0.1);
+      border-color: rgba(247, 147, 26, 0.42);
+      color: var(--text);
+    }
+
+    .gmail-button {
+      width: 3.4rem;
+      color: var(--text-soft);
+    }
+
+    .mail-button:hover,
+    .mail-button:focus-visible,
+    .gmail-button:hover,
+    .gmail-button:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(247, 147, 26, 0.68);
+      background: rgba(247, 147, 26, 0.14);
+      color: var(--accent);
+      outline: none;
+    }
+
+    .mail-button svg,
+    .gmail-button svg {
+      width: 1.2rem;
+      height: 1.2rem;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     footer {
@@ -1248,25 +1279,9 @@
         min-width: 0;
       }
 
-      .signup form {
-        gap: 0.5rem;
-      }
-
-      .signup input,
-      .signup button {
-        min-height: 4.2rem;
-        height: 4.2rem;
-      }
-
-      .signup input {
-        padding-left: 1rem;
-        padding-right: 1rem;
-        font-size: 1rem;
-      }
-
-      .signup button {
-        width: 4.2rem;
-        flex-basis: 4.2rem;
+      .contact-actions {
+        display: grid;
+        grid-template-columns: 1fr 3.4rem;
       }
 
       .stack-section {
@@ -1289,13 +1304,6 @@
       }
     }
   </style>
-  <script>
-    window.PORTFOLIO_CONFIG = {
-      supabaseUrl: "",
-      supabasePublishableKey: "",
-      newsletterTable: "newsletter_subscribers"
-    };
-  </script>
 </head>
 
 <body>
@@ -1339,11 +1347,29 @@
           </div>
 
           <div class="signup">
-            <form id="contact-form">
-              <input id="email-input" type="email" placeholder="Type your e-mail" required />
-              <button type="submit">→</button>
-            </form>
-            <p class="note">Vamos construir algo juntos.</p>
+            <div class="contact-actions" aria-label="Contato por e-mail">
+              <a class="mail-button" href="mailto:gabbsdiniz@proton.me?subject=Contato%20pelo%20portfolio">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 7.5 12 13l8-5.5"></path>
+                  <path d="M5 5h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"></path>
+                </svg>
+                gabbsdiniz@proton.me
+              </a>
+              <a
+                class="gmail-button"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=gabbsdiniz@proton.me&su=Contato%20pelo%20portfolio"
+                target="_blank"
+                rel="noopener"
+                aria-label="Abrir Gmail para escrever e-mail"
+                title="Abrir no Gmail"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 6h16v12H4z"></path>
+                  <path d="m4 7 8 6 8-6"></path>
+                </svg>
+              </a>
+            </div>
+            <p class="note">Para trocar ideia sobre tecnologia, produto ou construção em público.</p>
           </div>
 
           <footer>
@@ -1363,7 +1389,7 @@
         <article class="stack-pill"><strong>TypeScript</strong><span>Aplicações mais previsíveis e código fácil de evoluir.</span></article>
         <article class="stack-pill"><strong>Next.js</strong><span>Sites rápidos, rotas modernas e deploy limpo.</span></article>
         <article class="stack-pill"><strong>Python</strong><span>Automação, scripts e primeiros agentes práticos.</span></article>
-        <article class="stack-pill"><strong>Supabase</strong><span>Banco, auth e APIs para protótipos reais.</span></article>
+        <article class="stack-pill"><strong>Java</strong><span>Base forte para backend, arquitetura e orientação a objetos.</span></article>
         <article class="stack-pill"><strong>GitHub</strong><span>Construção pública, versionamento e Pages.</span></article>
         <article class="stack-pill"><strong>UI Systems</strong><span>Componentes polidos, acessíveis e reutilizáveis.</span></article>
         <article class="stack-pill"><strong>Bitcoin</strong><span>Curiosidade por soberania, redes e tecnologia aberta.</span></article>
@@ -1374,62 +1400,6 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
   <script>
-    const form = document.getElementById("contact-form");
-    const note = document.querySelector(".note");
-    const config = window.PORTFOLIO_CONFIG || {};
-
-    async function saveSubscriber(email) {
-      const { supabaseUrl, supabasePublishableKey, newsletterTable } = config;
-
-      if (!supabaseUrl || !supabasePublishableKey) {
-        localStorage.setItem("portfolio-newsletter-email", email);
-        return { configured: false };
-      }
-
-      const response = await fetch(`${supabaseUrl}/rest/v1/${newsletterTable || "newsletter_subscribers"}`, {
-        method: "POST",
-        headers: {
-          apikey: supabasePublishableKey,
-          authorization: `Bearer ${supabasePublishableKey}`,
-          "content-type": "application/json",
-          prefer: "return=minimal"
-        },
-        body: JSON.stringify({
-          email,
-          source: "gabbswq.github.io"
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error("Supabase insert failed");
-      }
-
-      return { configured: true };
-    }
-
-    form.addEventListener("submit", async function (e) {
-      e.preventDefault();
-
-      const visitorEmail = document.getElementById("email-input").value.trim().toLowerCase();
-
-      if (!visitorEmail) {
-        note.textContent = "Digite um e-mail para continuar.";
-        return;
-      }
-
-      note.textContent = "Salvando...";
-
-      try {
-        const result = await saveSubscriber(visitorEmail);
-        note.textContent = result.configured
-          ? "Pronto, e-mail cadastrado."
-          : "Pronto. Configure o Supabase para salvar no banco online.";
-        form.reset();
-      } catch (error) {
-        note.textContent = "Nao consegui salvar agora. Tente de novo em instantes.";
-      }
-    });
-
     if (window.gsap) {
       gsap.set(".stack-pill", {
         opacity: 0,
