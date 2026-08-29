@@ -1596,6 +1596,207 @@
       color: #919191;
     }
 
+    .work-section {
+      width: min(1160px, calc(100% - 3rem));
+      margin: 7rem auto;
+    }
+
+    .work-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .work-heading h2 {
+      max-width: 760px;
+      margin-top: 0.5rem;
+      font-family: Manrope, Inter, sans-serif;
+      font-size: clamp(2.6rem, 6vw, 6.4rem);
+      line-height: 0.92;
+      letter-spacing: -0.065em;
+    }
+
+    .work-heading > p {
+      max-width: 330px;
+      color: var(--text-soft);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .project-feature {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      min-height: 480px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: rgba(8, 8, 8, 0.78);
+      isolation: isolate;
+    }
+
+    .project-feature::before {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 54px 54px;
+      content: "";
+      mask-image: linear-gradient(90deg, #000, transparent 72%);
+    }
+
+    .project-visual {
+      display: flex;
+      min-height: 480px;
+      align-items: center;
+      justify-content: center;
+      padding: 3.4rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .project-terminal {
+      width: min(100%, 620px);
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.76);
+      box-shadow: 0 34px 90px rgba(0,0,0,0.45);
+      transform: rotate(-2deg);
+      transition: transform 0.5s cubic-bezier(.2,.8,.2,1), border-color 0.3s ease;
+    }
+
+    .project-feature:hover .project-terminal {
+      border-color: rgba(247,147,26,0.6);
+      transform: rotate(0deg) translateY(-8px);
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      height: 42px;
+      padding: 0 15px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .terminal-bar span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.28);
+    }
+
+    .terminal-content {
+      padding: 2.4rem;
+      color: rgba(255,255,255,0.62);
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: clamp(0.75rem, 1.2vw, 0.94rem);
+      line-height: 1.85;
+    }
+
+    .terminal-content strong { color: var(--accent); font-weight: 500; }
+    .terminal-content em { color: #f3f3ef; font-style: normal; }
+
+    .project-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.6rem;
+    }
+
+    .project-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--text-soft);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .project-status::before {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(247,147,26,0.8);
+      content: "";
+    }
+
+    .project-copy h3 {
+      margin: 2rem 0 1rem;
+      font-family: Manrope, Inter, sans-serif;
+      font-size: clamp(2rem, 3vw, 3.35rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .project-copy p { color: var(--text-soft); line-height: 1.65; }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 1.7rem 0;
+    }
+
+    .project-tech span {
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      color: rgba(255,255,255,0.68);
+      font-size: 0.7rem;
+    }
+
+    .project-link,
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .project-link {
+      width: 100%;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .project-link span:last-child,
+    .contact-link span:last-child { transition: transform 0.25s ease; }
+    .project-link:hover span:last-child,
+    .project-link:focus-visible span:last-child,
+    .contact-link:hover span:last-child,
+    .contact-link:focus-visible span:last-child { transform: translateX(7px); }
+
+    .contact-section {
+      width: min(1160px, calc(100% - 3rem));
+      margin: 5rem auto 2rem;
+      padding: 4.5rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-link {
+      width: 100%;
+      font-family: Manrope, Inter, sans-serif;
+      font-size: clamp(2.5rem, 7vw, 7.4rem);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.065em;
+    }
+
+    .contact-link span:first-child { max-width: 930px; }
+
+    .project-link:focus-visible,
+    .contact-link:focus-visible,
+    .social-link:focus-visible,
+    .gmail-button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 5px;
+    }
+
     @media (min-width: 860px) {
       .layout {
         max-width: 1400px;
@@ -1696,6 +1897,33 @@
         gap: 2rem;
         padding: 1rem;
       }
+
+      .work-section {
+        width: min(100% - 2rem, 35rem);
+        margin: 5rem auto;
+      }
+
+      .work-heading { display: block; }
+      .work-heading > p { margin-top: 1.2rem; }
+      .project-feature { grid-template-columns: 1fr; }
+
+      .project-visual {
+        min-height: 330px;
+        padding: 2rem 1.4rem;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .terminal-content { padding: 1.6rem 1.35rem; }
+      .project-copy { padding: 1.9rem 1.5rem; }
+
+      .contact-section {
+        width: min(100% - 2rem, 35rem);
+        margin-top: 3rem;
+        padding: 3.2rem 0;
+      }
+
+      .contact-link { align-items: end; }
 
       .process-section {
         width: min(100% - 2rem, 35rem);
@@ -1838,6 +2066,45 @@
       </div>
     </section>
 
+    <section class="work-section" aria-labelledby="work-title">
+      <div class="work-heading">
+        <div>
+          <p class="section-label">Trabalho selecionado</p>
+          <h2 id="work-title">Ideias virando sistemas.</h2>
+        </div>
+        <p>Projetos reais, construídos em público e evoluindo junto com o que aprendo.</p>
+      </div>
+
+      <article class="project-feature">
+        <div class="project-visual" aria-hidden="true">
+          <div class="project-terminal">
+            <div class="terminal-bar"><span></span><span></span><span></span></div>
+            <div class="terminal-content">
+              <div><strong>$</strong> product-factory start</div>
+              <div><em>01</em> descobrir oportunidade</div>
+              <div><em>02</em> validar oferta</div>
+              <div><em>03</em> construir produto</div>
+              <div><em>04</em> automatizar distribuição</div>
+              <div><strong>ready</strong> sistema em evolução</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-copy">
+          <div>
+            <span class="project-status">Em construção</span>
+            <h3>Gabbs Product Factory</h3>
+            <p>Uma fábrica pessoal para criar SaaS, mídia, educação e automações com IA, Codex e fluxos de múltiplos agentes.</p>
+            <div class="project-tech" aria-label="Tecnologias do projeto">
+              <span>TypeScript</span><span>PostgreSQL</span><span>Python</span><span>AI agents</span>
+            </div>
+          </div>
+          <a class="project-link" href="https://github.com/gabbswq/gabbs-product-factory" target="_blank" rel="noopener">
+            <span>Explorar no GitHub</span><span aria-hidden="true">&#8599;</span>
+          </a>
+        </div>
+      </article>
+    </section>
+
     <section class="stack-section" aria-label="Stack e foco técnico">
       <div class="stack-header">
         <h2>Construo sistemas que fazem ofertas darem ROI.</h2>
@@ -1857,6 +2124,12 @@
         <article class="stack-pill"><strong>UI & Motion</strong><span>Design de produto, sistemas visuais e movimento com intenção.</span></article>
         <article class="stack-pill"><strong>Build in public</strong><span>Aprendizado, construção e bastidores compartilhados no caminho.</span></article>
       </div>
+    </section>
+
+    <section class="contact-section" aria-label="Contato">
+      <a class="contact-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=gabbsdiniz@proton.me&amp;su=Contato%20pelo%20portfolio" target="_blank" rel="noopener">
+        <span>Vamos construir algo que funciona?</span><span aria-hidden="true">&#8599;</span>
+      </a>
     </section>
 
     <footer class="site-footer">
@@ -1923,6 +2196,31 @@
           scrollTrigger: { trigger: ".process-list", start: "top 82%" }
         });
 
+        gsap.from(".work-heading > *", {
+          opacity: 0,
+          y: 36,
+          stagger: 0.12,
+          duration: 0.82,
+          ease: "power3.out",
+          scrollTrigger: { trigger: ".work-heading", start: "top 84%" }
+        });
+
+        gsap.from(".project-feature", {
+          opacity: 0,
+          y: 54,
+          duration: 0.95,
+          ease: "power3.out",
+          scrollTrigger: { trigger: ".project-feature", start: "top 86%" }
+        });
+
+        gsap.from(".project-terminal", {
+          x: -42,
+          rotate: -5,
+          duration: 1.05,
+          ease: "power3.out",
+          scrollTrigger: { trigger: ".project-feature", start: "top 78%" }
+        });
+
         gsap.from(".stack-header > *", {
           opacity: 0,
           y: 32,
@@ -1940,6 +2238,14 @@
           duration: 0.68,
           ease: "power3.out",
           scrollTrigger: { trigger: ".stack-grid", start: "top 84%" }
+        });
+
+        gsap.from(".contact-link", {
+          opacity: 0,
+          y: 38,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: { trigger: ".contact-section", start: "top 86%" }
         });
 
         gsap.to(".photo img", {
