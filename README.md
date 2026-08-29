@@ -8,8 +8,9 @@ Meu site portfólio pessoal — hospedado no GitHub Pages.
 
 - HTML5 + CSS puro (sem build, sem framework)
 - Fontes do Google Fonts (Manrope + Inter)
-- GSAP para interação da foto, parallax sutil e entrada dos cards
+- GSAP + ScrollTrigger para interação da foto, parallax, progresso e entradas por scroll
 - Conteúdo sobre n8n, automações, funis, WhatsApp e direct response
+- Faixa cinética e narrativa de Automação → Aquisição → Distribuição
 
 ## Estrutura
 
@@ -21,10 +22,7 @@ Meu site portfólio pessoal — hospedado no GitHub Pages.
 
 ## Contato
 
-O portfolio usa links simples de e-mail:
-
-- `mailto:` para abrir o app de e-mail padrão.
-- Link direto para o Gmail Compose com `gabbsdiniz@proton.me` como destinatário.
+O portfolio usa um link direto para o Gmail Compose com `gabbsdiniz@proton.me` como destinatário.
 
 Não há captura de leads, banco de dados ou integração com Supabase nesta versão. O contato é feito diretamente por e-mail.
 

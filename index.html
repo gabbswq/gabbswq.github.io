@@ -1404,6 +1404,198 @@
       color: var(--text-soft);
     }
 
+    /* ===== MOTION SYSTEM ===== */
+    .motion-ready .photo-col,
+    .motion-ready .content-col,
+    .motion-ready .greeting span,
+    .motion-ready .quote-line,
+    .motion-ready .links,
+    .motion-ready footer {
+      animation: none;
+    }
+
+    .scroll-progress {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 100;
+      height: 2px;
+      pointer-events: none;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .scroll-progress span {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(247, 147, 26, 0.55);
+      transform: scaleX(0);
+      transform-origin: left center;
+    }
+
+    .motion-rail {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: rgba(5, 5, 5, 0.5);
+      mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+    }
+
+    .motion-track {
+      display: flex;
+      width: max-content;
+      animation: motionRail 26s linear infinite;
+      will-change: transform;
+    }
+
+    .motion-group {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      gap: 3.25rem;
+      padding: 1.15rem 1.625rem;
+    }
+
+    .motion-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.72rem;
+      color: var(--text-soft);
+      font-family: Manrope, Inter, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .motion-item::before {
+      content: "";
+      width: 0.34rem;
+      height: 0.34rem;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 14px rgba(247, 147, 26, 0.48);
+    }
+
+    @keyframes motionRail {
+      to { transform: translateX(-50%); }
+    }
+
+    .process-section {
+      position: relative;
+      z-index: 2;
+      width: min(1160px, calc(100% - 3rem));
+      margin: 7rem auto;
+    }
+
+    .process-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
+      gap: 2rem;
+      align-items: end;
+      margin-bottom: 2.25rem;
+    }
+
+    .section-label {
+      color: var(--accent);
+      font-family: Manrope, Inter, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .process-intro h2 {
+      max-width: 760px;
+      font-family: Manrope, Inter, sans-serif;
+      font-size: clamp(2.2rem, 5vw, 5.5rem);
+      line-height: 0.98;
+      letter-spacing: -0.065em;
+      text-wrap: balance;
+    }
+
+    .process-list {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .process-row {
+      display: grid;
+      grid-template-columns: 4rem minmax(180px, 0.65fr) minmax(0, 1fr);
+      gap: 1.5rem;
+      align-items: center;
+      min-height: 8.8rem;
+      border-top: 1px solid var(--border);
+      transition: border-color 0.28s ease, background 0.28s ease;
+    }
+
+    .process-row:hover {
+      border-color: rgba(247, 147, 26, 0.28);
+      background: linear-gradient(90deg, rgba(247, 147, 26, 0.035), transparent 76%);
+    }
+
+    .process-index {
+      color: var(--accent);
+      font-family: Manrope, Inter, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+    }
+
+    .process-row h3 {
+      font-family: Manrope, Inter, sans-serif;
+      font-size: clamp(1.35rem, 2.5vw, 2.25rem);
+      letter-spacing: -0.04em;
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+
+    .process-row:hover h3 {
+      color: var(--accent);
+      transform: translateX(0.3rem);
+    }
+
+    .process-row p {
+      max-width: 560px;
+      color: var(--text-soft);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .stack-pill::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(190px circle at var(--mx, 50%) var(--my, 50%), rgba(247, 147, 26, 0.13), transparent 72%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .stack-pill:hover::before {
+      opacity: 1;
+    }
+
+    .stack-pill strong,
+    .stack-pill span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .stack-pill {
+      background: rgba(8, 8, 8, 0.7);
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+    }
+
+    .stack-pill span {
+      color: #919191;
+    }
+
     @media (min-width: 860px) {
       .layout {
         max-width: 1400px;
@@ -1418,7 +1610,9 @@
 
     @media (max-width: 859px) {
       .hero {
+        min-height: auto;
         padding-top: 1.25rem;
+        padding-bottom: 3rem;
       }
 
       .photo {
@@ -1497,6 +1691,33 @@
       .site-footer .footer-mail {
         overflow-wrap: anywhere;
       }
+
+      .motion-group {
+        gap: 2rem;
+        padding: 1rem;
+      }
+
+      .process-section {
+        width: min(100% - 2rem, 35rem);
+        margin: 5rem auto;
+      }
+
+      .process-intro {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+      }
+
+      .process-row {
+        grid-template-columns: 2.8rem minmax(0, 1fr);
+        gap: 0.9rem;
+        min-height: 0;
+        padding: 1.4rem 0;
+      }
+
+      .process-row p {
+        grid-column: 2;
+        font-size: 0.86rem;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1506,11 +1727,16 @@
       .ambient-visual img {
         transition: none !important;
       }
+
+      .motion-track {
+        animation-play-state: paused;
+      }
     }
   </style>
 </head>
 
 <body>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
   <div class="ambient-visual" aria-hidden="true"><img src="./hero-bg-final.png?v=16" alt=""></div>
 <main class="page">
     <section class="hero">
@@ -1565,6 +1791,53 @@
       </div>
     </section>
 
+    <section class="motion-rail" aria-label="Áreas de atuação">
+      <div class="motion-track">
+        <div class="motion-group">
+          <span class="motion-item">n8n</span>
+          <span class="motion-item">Automações</span>
+          <span class="motion-item">Direct response</span>
+          <span class="motion-item">Funis</span>
+          <span class="motion-item">WhatsApp</span>
+          <span class="motion-item">UI & Motion</span>
+          <span class="motion-item">Build in public</span>
+        </div>
+        <div class="motion-group" aria-hidden="true">
+          <span class="motion-item">n8n</span>
+          <span class="motion-item">Automações</span>
+          <span class="motion-item">Direct response</span>
+          <span class="motion-item">Funis</span>
+          <span class="motion-item">WhatsApp</span>
+          <span class="motion-item">UI & Motion</span>
+          <span class="motion-item">Build in public</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="process-section" aria-labelledby="process-title">
+      <div class="process-intro">
+        <p class="section-label">Como eu construo</p>
+        <h2 id="process-title">Da atenção à operação.</h2>
+      </div>
+      <div class="process-list">
+        <article class="process-row">
+          <span class="process-index">01</span>
+          <h3>Automação</h3>
+          <p>Workflows em n8n, integrações e agentes para transformar tarefas repetitivas em sistemas que rodam todos os dias.</p>
+        </article>
+        <article class="process-row">
+          <span class="process-index">02</span>
+          <h3>Aquisição</h3>
+          <p>Páginas, funis e jornadas pensadas para capturar atenção, qualificar demanda e aproximar a oferta da conversão.</p>
+        </article>
+        <article class="process-row">
+          <span class="process-index">03</span>
+          <h3>Distribuição</h3>
+          <p>WhatsApp, follow-up e canais de contato conectados à operação para a mensagem chegar na pessoa certa.</p>
+        </article>
+      </div>
+    </section>
+
     <section class="stack-section" aria-label="Stack e foco técnico">
       <div class="stack-header">
         <h2>Construo sistemas que fazem ofertas darem ROI.</h2>
@@ -1592,99 +1865,153 @@
 </main>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
   <script>
-    if (window.gsap) {
-      gsap.set(".stack-pill", {
-        opacity: 0,
-        y: 24
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const finePointer = window.matchMedia("(pointer: fine)").matches;
+    const photo = document.querySelector(".photo");
+    const ambientImage = document.querySelector(".ambient-visual img");
+    const stackPills = document.querySelectorAll(".stack-pill");
+    const actionLinks = document.querySelectorAll(".links a");
+
+    stackPills.forEach(function (pill) {
+      pill.addEventListener("pointermove", function (event) {
+        const rect = pill.getBoundingClientRect();
+        pill.style.setProperty("--mx", (event.clientX - rect.left) + "px");
+        pill.style.setProperty("--my", (event.clientY - rect.top) + "px");
       });
+    });
 
-      const stackObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
+    if (window.gsap) {
+      document.body.classList.add("motion-ready");
 
-          gsap.to(".stack-pill", {
-            opacity: 1,
-            y: 0,
-            stagger: 0.07,
-            duration: 0.7,
-            ease: "power3.out"
-          });
+      if (window.ScrollTrigger && !reduceMotion) {
+        gsap.registerPlugin(ScrollTrigger);
 
-          stackObserver.disconnect();
+        const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
+        intro
+          .from(".photo-col", { opacity: 0, x: -44, duration: 1.05 })
+          .from(".content-col", { opacity: 0, x: 34, duration: 0.9 }, "-=0.72")
+          .from(".greeting span", { opacity: 0, y: 44, stagger: 0.09, duration: 0.72 }, "-=0.58")
+          .from(".quote-line", { opacity: 0, y: 18, duration: 0.62 }, "-=0.42")
+          .from(".links a", { opacity: 0, y: 16, scale: 0.9, stagger: 0.06, duration: 0.5 }, "-=0.36");
+
+        gsap.from(".motion-rail", {
+          opacity: 0,
+          y: 24,
+          duration: 0.75,
+          ease: "power3.out",
+          scrollTrigger: { trigger: ".motion-rail", start: "top 92%" }
         });
-      }, { threshold: 0.22 });
 
-      const stackSection = document.querySelector(".stack-section");
-      if (stackSection) {
-        stackObserver.observe(stackSection);
+        gsap.from(".process-intro > *", {
+          opacity: 0,
+          y: 34,
+          stagger: 0.12,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: { trigger: ".process-intro", start: "top 82%" }
+        });
+
+        gsap.from(".process-row", {
+          opacity: 0,
+          y: 42,
+          stagger: 0.13,
+          duration: 0.78,
+          ease: "power3.out",
+          scrollTrigger: { trigger: ".process-list", start: "top 82%" }
+        });
+
+        gsap.from(".stack-header > *", {
+          opacity: 0,
+          y: 32,
+          stagger: 0.12,
+          duration: 0.78,
+          ease: "power3.out",
+          scrollTrigger: { trigger: ".stack-header", start: "top 84%" }
+        });
+
+        gsap.from(".stack-pill", {
+          opacity: 0,
+          y: 34,
+          scale: 0.97,
+          stagger: 0.055,
+          duration: 0.68,
+          ease: "power3.out",
+          scrollTrigger: { trigger: ".stack-grid", start: "top 84%" }
+        });
+
+        gsap.to(".photo img", {
+          yPercent: 5,
+          scale: 1.08,
+          ease: "none",
+          scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 }
+        });
+
+        gsap.to(".content-col", {
+          yPercent: -8,
+          ease: "none",
+          scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 }
+        });
+
+        gsap.to(ambientImage, {
+          x: -22,
+          y: -42,
+          ease: "none",
+          scrollTrigger: { start: 0, end: "max", scrub: 1.2 }
+        });
+
+        gsap.to(".scroll-progress span", {
+          scaleX: 1,
+          ease: "none",
+          scrollTrigger: { start: 0, end: "max", scrub: 0.2 }
+        });
       }
 
-      const photo = document.querySelector(".photo");
+      if (photo && finePointer && !reduceMotion) {
+        photo.addEventListener("mousemove", function (event) {
+          const rect = photo.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width - 0.5;
+          const y = (event.clientY - rect.top) / rect.height - 0.5;
 
-      photo.addEventListener("mousemove", function (e) {
-        const rect = photo.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-
-        gsap.to(photo, {
-          rotateY: x * 6,
-          rotateX: -y * 6,
-          y: -8,
-          scale: 1.02,
-          duration: 0.45,
-          ease: "power3.out"
+          gsap.to(photo, {
+            rotateY: x * 6,
+            rotateX: -y * 6,
+            y: -8,
+            scale: 1.02,
+            duration: 0.45,
+            ease: "power3.out"
+          });
         });
 
-        gsap.to(".photo img", {
-          x: x * 16,
-          y: y * 16,
-          scale: 1.06,
-          duration: 0.55,
-          ease: "power3.out"
-        });
-      });
-
-      photo.addEventListener("mouseleave", function () {
-        gsap.to(photo, {
-          rotateY: 0,
-          rotateX: 0,
-          y: 0,
-          scale: 1,
-          duration: 0.65,
-          ease: "elastic.out(1, 0.55)"
+        photo.addEventListener("mouseleave", function () {
+          gsap.to(photo, {
+            rotateY: 0,
+            rotateX: 0,
+            y: 0,
+            scale: 1,
+            duration: 0.65,
+            ease: "elastic.out(1, 0.55)"
+          });
         });
 
-        gsap.to(".photo img", {
-          x: 0,
-          y: 0,
-          scale: 1,
-          duration: 0.65,
-          ease: "power3.out"
-        });
-      });
-
-      const ambientImage = document.querySelector(".ambient-visual img");
-      let scrollFrame = null;
-
-      window.addEventListener("scroll", function () {
-        if (scrollFrame) return;
-
-        scrollFrame = requestAnimationFrame(function () {
-          const scrollProgress = Math.min(window.scrollY / Math.max(window.innerHeight, 1), 1.2);
-
-          gsap.to(ambientImage, {
-            x: scrollProgress * -18,
-            y: scrollProgress * -34,
-            duration: 0.8,
-            ease: "power3.out",
-            overwrite: "auto"
+        actionLinks.forEach(function (link) {
+          link.addEventListener("mousemove", function (event) {
+            const rect = link.getBoundingClientRect();
+            gsap.to(link, {
+              x: (event.clientX - rect.left - rect.width / 2) * 0.18,
+              y: (event.clientY - rect.top - rect.height / 2) * 0.18,
+              duration: 0.25,
+              ease: "power2.out"
+            });
           });
 
-          scrollFrame = null;
+          link.addEventListener("mouseleave", function () {
+            gsap.to(link, { x: 0, y: 0, duration: 0.45, ease: "elastic.out(1, 0.45)" });
+          });
         });
-      }, { passive: true });
+      }
     }
   </script>
 </body>
