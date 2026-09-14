@@ -10,7 +10,7 @@ Meu site portfólio pessoal — hospedado no GitHub Pages.
 - Fontes do Google Fonts (Manrope + Inter)
 - GSAP + ScrollTrigger para interação da foto, parallax, progresso e entradas por scroll
 - Conteúdo sobre n8n, automações, IA, funis, aquisição, conversão, ROI e infraestrutura cloud
-- Manifesto curto sobre transformar ideias em sistemas
+- Página de apresentação focada na capa, nos contatos e no build in public
 - Rodapé minimalista e estados de foco acessíveis para navegação por teclado
 
 ## Estrutura
