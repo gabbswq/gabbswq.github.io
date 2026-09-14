@@ -1177,7 +1177,7 @@
       position: relative;
       z-index: 2;
       width: min(1160px, calc(100% - 3rem));
-      margin: -3rem auto 6rem;
+      margin: 0 auto 6rem;
       padding: clamp(2rem, 4vw, 3.5rem) 0 0;
       border-top: 1px solid var(--border);
     }
@@ -2090,33 +2090,6 @@
       </div>
     </section>
 
-    <section class="motion-rail" aria-label="Áreas de atuação">
-      <div class="motion-track">
-        <div class="motion-group">
-          <span class="motion-item">n8n</span>
-          <span class="motion-item">Automação</span>
-          <span class="motion-item">Inteligência artificial</span>
-          <span class="motion-item">Funis</span>
-          <span class="motion-item">Conversão</span>
-          <span class="motion-item">ROI</span>
-          <span class="motion-item">Cloud</span>
-          <span class="motion-item">Web3</span>
-          <span class="motion-item">Build in public</span>
-        </div>
-        <div class="motion-group" aria-hidden="true">
-          <span class="motion-item">n8n</span>
-          <span class="motion-item">Automação</span>
-          <span class="motion-item">Inteligência artificial</span>
-          <span class="motion-item">Funis</span>
-          <span class="motion-item">Conversão</span>
-          <span class="motion-item">ROI</span>
-          <span class="motion-item">Cloud</span>
-          <span class="motion-item">Web3</span>
-          <span class="motion-item">Build in public</span>
-        </div>
-      </div>
-    </section>
-
     <section class="positioning-section" aria-labelledby="positioning-title">
       <div class="positioning-heading">
         <p class="section-label">O que eu estou construindo</p>
@@ -2151,14 +2124,8 @@
       </div>
     </section>
 
-    <section class="contact-section" aria-label="Contato">
-      <a class="contact-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=gabbsdiniz@proton.me&amp;su=Contato%20pelo%20portfolio" target="_blank" rel="noopener">
-        <span>Vamos construir algo que funciona?</span><span aria-hidden="true">&#8599;</span>
-      </a>
-    </section>
-
     <footer class="site-footer">
-      <div>© 2026 · Todos os direitos reservados · <a class="footer-mail" href="https://mail.google.com/mail/?view=cm&fs=1&to=gabbsdiniz@proton.me&su=Contato%20pelo%20portfolio" target="_blank" rel="noopener">gabbsdiniz@proton.me</a></div>
+      <div>© 2026 Gabriel Diniz. Todos os direitos reservados.</div>
     </footer>
 </main>
 
@@ -2195,14 +2162,6 @@
           .from(".quote-line", { opacity: 0, y: 18, duration: 0.62 }, "-=0.42")
           .from(".links a", { opacity: 0, y: 16, scale: 0.9, stagger: 0.06, duration: 0.5 }, "-=0.36");
 
-        gsap.from(".motion-rail", {
-          opacity: 0,
-          y: 24,
-          duration: 0.75,
-          ease: "power3.out",
-          scrollTrigger: { trigger: ".motion-rail", start: "top 92%" }
-        });
-
         gsap.from(".positioning-heading > *, .positioning-copy", {
           opacity: 0,
           y: 36,
@@ -2238,14 +2197,6 @@
           duration: 0.68,
           ease: "power3.out",
           scrollTrigger: { trigger: ".stack-grid", start: "top 84%" }
-        });
-
-        gsap.from(".contact-link", {
-          opacity: 0,
-          y: 38,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: { trigger: ".contact-section", start: "top 86%" }
         });
 
         gsap.to(".photo img", {

@@ -11,9 +11,8 @@ Meu site portfólio pessoal — hospedado no GitHub Pages.
 - GSAP + ScrollTrigger para interação da foto, parallax, progresso e entradas por scroll
 - Conteúdo sobre n8n, automações, IA, funis, aquisição, conversão, ROI e infraestrutura cloud
 - Curadoria visual de ferramentas e referências: Cursor, Supabase, AWS, Cloudflare, Figma, Awwwards, GSAP e outras
-- Faixa cinética com os temas que orientam a construção pública do Gabriel
 - Posicionamento pessoal e foco técnico sem inventar cases ou clientes
-- CTA editorial de contato e estados de foco acessíveis para navegação por teclado
+- Rodapé minimalista e estados de foco acessíveis para navegação por teclado
 
 ## Estrutura
 
