@@ -1351,6 +1351,67 @@
       font-style: italic;
     }
 
+    .identity-line {
+      margin: 0 0 -0.55rem;
+      color: var(--accent);
+      font-family: Manrope, Inter, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .positioning-section {
+      position: relative;
+      z-index: 2;
+      width: min(1160px, calc(100% - 3rem));
+      margin: 7rem auto 6rem;
+      padding: clamp(2.25rem, 5vw, 4.5rem) 0 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .positioning-heading {
+      display: grid;
+      grid-template-columns: minmax(180px, 0.55fr) minmax(0, 1.45fr);
+      gap: 2rem;
+      align-items: end;
+    }
+
+    .positioning-heading h2 {
+      max-width: 820px;
+      font-family: Manrope, Inter, sans-serif;
+      font-size: clamp(2.6rem, 6vw, 6.7rem);
+      line-height: 0.92;
+      letter-spacing: -0.065em;
+      text-wrap: balance;
+    }
+
+    .positioning-copy {
+      max-width: 720px;
+      margin: 2.5rem 0 3.5rem auto;
+      color: var(--text-soft);
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      line-height: 1.7;
+    }
+
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .focus-item {
+      min-height: 13rem;
+      padding: 1.5rem 1.4rem 1.8rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .focus-item:last-child { border-right: 0; }
+    .focus-item > span { color: var(--accent); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; }
+    .focus-item h3 { margin: 2.5rem 0 0.7rem; font-family: Manrope, Inter, sans-serif; font-size: 1.25rem; letter-spacing: -0.03em; }
+    .focus-item p { max-width: 270px; color: var(--text-soft); font-size: 0.86rem; line-height: 1.6; }
+
     .stack-header h2 {
       max-width: 760px;
     }
@@ -1925,6 +1986,26 @@
 
       .contact-link { align-items: end; }
 
+      .positioning-section {
+        width: min(100% - 2rem, 35rem);
+        margin: 5rem auto;
+      }
+
+      .positioning-heading {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .positioning-copy {
+        margin: 2rem 0 2.5rem;
+        font-size: 0.95rem;
+      }
+
+      .focus-grid { grid-template-columns: 1fr; }
+      .focus-item { min-height: 0; padding: 1.3rem 0 1.5rem; border-right: 0; border-bottom: 1px solid var(--border); }
+      .focus-item:last-child { border-bottom: 0; }
+      .focus-item h3 { margin-top: 1.4rem; }
+
       .process-section {
         width: min(100% - 2rem, 35rem);
         margin: 5rem auto;
@@ -1976,11 +2057,12 @@
         </div>
 
         <div class="content-col">
+          <p class="identity-line">Gabriel Diniz · desenvolvedor em formação</p>
           <h1 class="greeting">
             <span>Build</span> <span>in</span><br><span>public.</span>
           </h1>
 
-          <p class="quote-line">"Se você não constrói seu sonho, alguém vai te contratar para construir o dele."</p>
+          <p class="quote-line">Automação, inteligência artificial e infraestrutura para transformar atenção em operações que convertem.</p>
 
           <div class="links">
             <a class="social-link icon-link" href="https://x.com/gabbsweb3" target="_blank" rel="noopener" aria-label="X">
@@ -2023,106 +2105,60 @@
       <div class="motion-track">
         <div class="motion-group">
           <span class="motion-item">n8n</span>
-          <span class="motion-item">Automações</span>
-          <span class="motion-item">Direct response</span>
+          <span class="motion-item">Automação</span>
+          <span class="motion-item">Inteligência artificial</span>
           <span class="motion-item">Funis</span>
-          <span class="motion-item">WhatsApp</span>
-          <span class="motion-item">UI & Motion</span>
+          <span class="motion-item">Conversão</span>
+          <span class="motion-item">ROI</span>
+          <span class="motion-item">Cloud</span>
+          <span class="motion-item">Web3</span>
           <span class="motion-item">Build in public</span>
         </div>
         <div class="motion-group" aria-hidden="true">
           <span class="motion-item">n8n</span>
-          <span class="motion-item">Automações</span>
-          <span class="motion-item">Direct response</span>
+          <span class="motion-item">Automação</span>
+          <span class="motion-item">Inteligência artificial</span>
           <span class="motion-item">Funis</span>
-          <span class="motion-item">WhatsApp</span>
-          <span class="motion-item">UI & Motion</span>
+          <span class="motion-item">Conversão</span>
+          <span class="motion-item">ROI</span>
+          <span class="motion-item">Cloud</span>
+          <span class="motion-item">Web3</span>
           <span class="motion-item">Build in public</span>
         </div>
       </div>
     </section>
 
-    <section class="process-section" aria-labelledby="process-title">
-      <div class="process-intro">
-        <p class="section-label">Como eu construo</p>
-        <h2 id="process-title">Da atenção à operação.</h2>
+    <section class="positioning-section" aria-labelledby="positioning-title">
+      <div class="positioning-heading">
+        <p class="section-label">O que eu estou construindo</p>
+        <h2 id="positioning-title">Ideias virando sistemas automatizados.</h2>
       </div>
-      <div class="process-list">
-        <article class="process-row">
-          <span class="process-index">01</span>
-          <h3>Automação</h3>
-          <p>Workflows em n8n, integrações e agentes para transformar tarefas repetitivas em sistemas que rodam todos os dias.</p>
-        </article>
-        <article class="process-row">
-          <span class="process-index">02</span>
-          <h3>Aquisição</h3>
-          <p>Páginas, funis e jornadas pensadas para capturar atenção, qualificar demanda e aproximar a oferta da conversão.</p>
-        </article>
-        <article class="process-row">
-          <span class="process-index">03</span>
-          <h3>Distribuição</h3>
-          <p>WhatsApp, follow-up e canais de contato conectados à operação para a mensagem chegar na pessoa certa.</p>
-        </article>
+      <p class="positioning-copy">Eu estudo e construo estruturas digitais para transformar uma boa oferta em uma operação capaz de captar atenção, organizar dados e buscar conversão. Uso inteligência artificial, n8n e uma infraestrutura bem pensada para criar sistemas rápidos, responsivos e preparados para crescer.</p>
+      <div class="focus-grid">
+        <article class="focus-item"><span>01</span><h3>Automação & IA</h3><p>Workflows, agentes e integrações que tiram o trabalho repetitivo do caminho.</p></article>
+        <article class="focus-item"><span>02</span><h3>Oferta & aquisição</h3><p>Funis, anúncios e páginas desenhados para aproximar atenção de conversão e ROI.</p></article>
+        <article class="focus-item"><span>03</span><h3>Cloud & dados</h3><p>Arquitetura, bancos e serviços de nuvem para sustentar demanda, latência e evolução.</p></article>
       </div>
-    </section>
-
-    <section class="work-section" aria-labelledby="work-title">
-      <div class="work-heading">
-        <div>
-          <p class="section-label">Trabalho selecionado</p>
-          <h2 id="work-title">Ideias virando sistemas.</h2>
-        </div>
-        <p>Projetos reais, construídos em público e evoluindo junto com o que aprendo.</p>
-      </div>
-
-      <article class="project-feature">
-        <div class="project-visual" aria-hidden="true">
-          <div class="project-terminal">
-            <div class="terminal-bar"><span></span><span></span><span></span></div>
-            <div class="terminal-content">
-              <div><strong>$</strong> product-factory start</div>
-              <div><em>01</em> descobrir oportunidade</div>
-              <div><em>02</em> validar oferta</div>
-              <div><em>03</em> construir produto</div>
-              <div><em>04</em> automatizar distribuição</div>
-              <div><strong>ready</strong> sistema em evolução</div>
-            </div>
-          </div>
-        </div>
-        <div class="project-copy">
-          <div>
-            <span class="project-status">Em construção</span>
-            <h3>Gabbs Product Factory</h3>
-            <p>Uma fábrica pessoal para criar SaaS, mídia, educação e automações com IA, Codex e fluxos de múltiplos agentes.</p>
-            <div class="project-tech" aria-label="Tecnologias do projeto">
-              <span>TypeScript</span><span>PostgreSQL</span><span>Python</span><span>AI agents</span>
-            </div>
-          </div>
-          <a class="project-link" href="https://github.com/gabbswq/gabbs-product-factory" target="_blank" rel="noopener">
-            <span>Explorar no GitHub</span><span aria-hidden="true">&#8599;</span>
-          </a>
-        </div>
-      </article>
     </section>
 
     <section class="stack-section" aria-label="Stack e foco técnico">
       <div class="stack-header">
-        <h2>Construo sistemas que fazem ofertas darem ROI.</h2>
-        <p>Da primeira ideia à distribuição: automações, páginas, funis e interfaces pensadas para unir design, operação e crescimento.</p>
+        <h2>As ferramentas por trás da operação.</h2>
+        <p>Uma mistura de código, automação, dados e visão de negócio para construir com mais clareza e menos desperdício.</p>
       </div>
       <div class="stack-grid">
         <article class="stack-pill"><strong>n8n</strong><span>Workflows, integrações e automações que conectam a operação.</span></article>
-        <article class="stack-pill"><strong>Automações</strong><span>Tarefas, leads e processos com menos trabalho manual.</span></article>
-        <article class="stack-pill"><strong>Funis</strong><span>Captação, qualificação, follow-up e jornadas de conversão.</span></article>
-        <article class="stack-pill"><strong>WhatsApp</strong><span>Canais de distribuição, atendimento e relacionamento.</span></article>
+        <article class="stack-pill"><strong>IA generativa</strong><span>Imagens, vídeos, agentes e ideias que viram ativos para ofertas.</span></article>
+        <article class="stack-pill"><strong>Funis</strong><span>Captação, qualificação e jornadas que aproximam atenção de conversão.</span></article>
         <article class="stack-pill"><strong>Direct response</strong><span>Oferta, copy, tráfego pago e métricas que orientam ação.</span></article>
-        <article class="stack-pill"><strong>Lançamentos</strong><span>Estrutura, contingência e ritmo para colocar produtos no ar.</span></article>
-        <article class="stack-pill"><strong>Next.js</strong><span>Sites rápidos, rotas modernas e deploy limpo.</span></article>
-        <article class="stack-pill"><strong>JavaScript</strong><span>Interações, GSAP, Anime.js e interfaces vivas.</span></article>
+        <article class="stack-pill"><strong>Ads & aquisição</strong><span>Estratégias para testar criativos, canais e mensagens com método.</span></article>
+        <article class="stack-pill"><strong>ROI & dados</strong><span>Eventos, bancos e indicadores para entender o que está funcionando.</span></article>
+        <article class="stack-pill"><strong>AWS</strong><span>Serviços de nuvem para aplicações que precisam crescer com estabilidade.</span></article>
+        <article class="stack-pill"><strong>Cloudflare</strong><span>Rede, segurança e performance na borda da operação.</span></article>
         <article class="stack-pill"><strong>TypeScript</strong><span>Aplicações mais previsíveis e fáceis de evoluir.</span></article>
+        <article class="stack-pill"><strong>JavaScript</strong><span>Interfaces, integrações e experiências que respondem rápido.</span></article>
         <article class="stack-pill"><strong>Python</strong><span>Scripts, automação e agentes práticos para a operação.</span></article>
-        <article class="stack-pill"><strong>UI & Motion</strong><span>Design de produto, sistemas visuais e movimento com intenção.</span></article>
-        <article class="stack-pill"><strong>Build in public</strong><span>Aprendizado, construção e bastidores compartilhados no caminho.</span></article>
+        <article class="stack-pill"><strong>Web3 & Bitcoin</strong><span>Curiosidade, estudo e construção pública em torno de novas redes.</span></article>
       </div>
     </section>
 
@@ -2166,6 +2202,7 @@
         intro
           .from(".photo-col", { opacity: 0, x: -44, duration: 1.05 })
           .from(".content-col", { opacity: 0, x: 34, duration: 0.9 }, "-=0.72")
+          .from(".identity-line", { opacity: 0, y: 18, duration: 0.5 }, "-=0.55")
           .from(".greeting span", { opacity: 0, y: 44, stagger: 0.09, duration: 0.72 }, "-=0.58")
           .from(".quote-line", { opacity: 0, y: 18, duration: 0.62 }, "-=0.42")
           .from(".links a", { opacity: 0, y: 16, scale: 0.9, stagger: 0.06, duration: 0.5 }, "-=0.36");
@@ -2178,47 +2215,22 @@
           scrollTrigger: { trigger: ".motion-rail", start: "top 92%" }
         });
 
-        gsap.from(".process-intro > *", {
-          opacity: 0,
-          y: 34,
-          stagger: 0.12,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: { trigger: ".process-intro", start: "top 82%" }
-        });
-
-        gsap.from(".process-row", {
-          opacity: 0,
-          y: 42,
-          stagger: 0.13,
-          duration: 0.78,
-          ease: "power3.out",
-          scrollTrigger: { trigger: ".process-list", start: "top 82%" }
-        });
-
-        gsap.from(".work-heading > *", {
+        gsap.from(".positioning-heading > *, .positioning-copy", {
           opacity: 0,
           y: 36,
           stagger: 0.12,
           duration: 0.82,
           ease: "power3.out",
-          scrollTrigger: { trigger: ".work-heading", start: "top 84%" }
+          scrollTrigger: { trigger: ".positioning-section", start: "top 84%" }
         });
 
-        gsap.from(".project-feature", {
+        gsap.from(".focus-item", {
           opacity: 0,
-          y: 54,
-          duration: 0.95,
+          y: 28,
+          stagger: 0.1,
+          duration: 0.7,
           ease: "power3.out",
-          scrollTrigger: { trigger: ".project-feature", start: "top 86%" }
-        });
-
-        gsap.from(".project-terminal", {
-          x: -42,
-          rotate: -5,
-          duration: 1.05,
-          ease: "power3.out",
-          scrollTrigger: { trigger: ".project-feature", start: "top 78%" }
+          scrollTrigger: { trigger: ".focus-grid", start: "top 86%" }
         });
 
         gsap.from(".stack-header > *", {

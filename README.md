@@ -9,9 +9,9 @@ Meu site portfólio pessoal — hospedado no GitHub Pages.
 - HTML5 + CSS puro (sem build, sem framework)
 - Fontes do Google Fonts (Manrope + Inter)
 - GSAP + ScrollTrigger para interação da foto, parallax, progresso e entradas por scroll
-- Conteúdo sobre n8n, automações, funis, WhatsApp e direct response
-- Faixa cinética e narrativa de Automação → Aquisição → Distribuição
-- Projeto em destaque conectado ao repositório `gabbs-product-factory`
+- Conteúdo sobre n8n, automações, IA, funis, aquisição, conversão, ROI e infraestrutura cloud
+- Faixa cinética com os temas que orientam a construção pública do Gabriel
+- Posicionamento pessoal e foco técnico sem inventar cases ou clientes
 - CTA editorial de contato e estados de foco acessíveis para navegação por teclado
 
 ## Estrutura
