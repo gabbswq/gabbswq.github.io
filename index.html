@@ -1351,16 +1351,6 @@
       font-style: italic;
     }
 
-    .identity-line {
-      margin: 0 0 -0.55rem;
-      color: var(--accent);
-      font-family: Manrope, Inter, sans-serif;
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
     .positioning-section {
       position: relative;
       z-index: 2;
@@ -2057,12 +2047,11 @@
         </div>
 
         <div class="content-col">
-          <p class="identity-line">Gabriel Diniz · desenvolvedor em formação</p>
           <h1 class="greeting">
             <span>Build</span> <span>in</span><br><span>public.</span>
           </h1>
 
-          <p class="quote-line">Automação, inteligência artificial e infraestrutura para transformar atenção em operações que convertem.</p>
+          <p class="quote-line">"Se você não constrói seu sonho, alguém vai te contratar para construir o dele."</p>
 
           <div class="links">
             <a class="social-link icon-link" href="https://x.com/gabbsweb3" target="_blank" rel="noopener" aria-label="X">
@@ -2143,22 +2132,22 @@
 
     <section class="stack-section" aria-label="Stack e foco técnico">
       <div class="stack-header">
-        <h2>As ferramentas por trás da operação.</h2>
-        <p>Uma mistura de código, automação, dados e visão de negócio para construir com mais clareza e menos desperdício.</p>
+        <h2>Ferramentas e referências.</h2>
+        <p>Uma curadoria do que uso, estudo e acompanho para construir com mais clareza, velocidade e repertório.</p>
       </div>
       <div class="stack-grid">
         <article class="stack-pill"><strong>n8n</strong><span>Workflows, integrações e automações que conectam a operação.</span></article>
-        <article class="stack-pill"><strong>IA generativa</strong><span>Imagens, vídeos, agentes e ideias que viram ativos para ofertas.</span></article>
-        <article class="stack-pill"><strong>Funis</strong><span>Captação, qualificação e jornadas que aproximam atenção de conversão.</span></article>
-        <article class="stack-pill"><strong>Direct response</strong><span>Oferta, copy, tráfego pago e métricas que orientam ação.</span></article>
-        <article class="stack-pill"><strong>Ads & aquisição</strong><span>Estratégias para testar criativos, canais e mensagens com método.</span></article>
-        <article class="stack-pill"><strong>ROI & dados</strong><span>Eventos, bancos e indicadores para entender o que está funcionando.</span></article>
-        <article class="stack-pill"><strong>AWS</strong><span>Serviços de nuvem para aplicações que precisam crescer com estabilidade.</span></article>
+        <article class="stack-pill"><strong>Cursor</strong><span>Editor com IA para explorar, escrever e evoluir código.</span></article>
+        <article class="stack-pill"><strong>GitHub + Git</strong><span>Repositórios, versionamento e construção pública dos projetos.</span></article>
+        <article class="stack-pill"><strong>Supabase</strong><span>Postgres, autenticação e dados para produtos digitais.</span></article>
+        <article class="stack-pill"><strong>AWS</strong><span>Serviços de nuvem para aplicações que precisam crescer.</span></article>
         <article class="stack-pill"><strong>Cloudflare</strong><span>Rede, segurança e performance na borda da operação.</span></article>
-        <article class="stack-pill"><strong>TypeScript</strong><span>Aplicações mais previsíveis e fáceis de evoluir.</span></article>
-        <article class="stack-pill"><strong>JavaScript</strong><span>Interfaces, integrações e experiências que respondem rápido.</span></article>
-        <article class="stack-pill"><strong>Python</strong><span>Scripts, automação e agentes práticos para a operação.</span></article>
-        <article class="stack-pill"><strong>Web3 & Bitcoin</strong><span>Curiosidade, estudo e construção pública em torno de novas redes.</span></article>
+        <article class="stack-pill"><strong>ChatGPT · Claude · Gemini</strong><span>Pesquisa, raciocínio, agentes e criação de ativos.</span></article>
+        <article class="stack-pill"><strong>Pika · Kling AI · Veo</strong><span>Vídeo generativo para ideias, criativos e ofertas.</span></article>
+        <article class="stack-pill"><strong>Figma · Kittl · Awwwards</strong><span>Design, repertório visual e referências para interfaces.</span></article>
+        <article class="stack-pill"><strong>GSAP · Anime.js · 21st.dev</strong><span>Motion, componentes e interações com intenção.</span></article>
+        <article class="stack-pill"><strong>Arkham · DEX Screener · Binance · Coinbase</strong><span>Pesquisa on-chain e referências do mercado de ativos digitais.</span></article>
+        <article class="stack-pill"><strong>NotebookLM · Perplexity · Gamma</strong><span>Leitura, síntese e transformação de ideias em conteúdo.</span></article>
       </div>
     </section>
 
@@ -2202,7 +2191,6 @@
         intro
           .from(".photo-col", { opacity: 0, x: -44, duration: 1.05 })
           .from(".content-col", { opacity: 0, x: 34, duration: 0.9 }, "-=0.72")
-          .from(".identity-line", { opacity: 0, y: 18, duration: 0.5 }, "-=0.55")
           .from(".greeting span", { opacity: 0, y: 44, stagger: 0.09, duration: 0.72 }, "-=0.58")
           .from(".quote-line", { opacity: 0, y: 18, duration: 0.62 }, "-=0.42")
           .from(".links a", { opacity: 0, y: 16, scale: 0.9, stagger: 0.06, duration: 0.5 }, "-=0.36");
