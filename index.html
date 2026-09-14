@@ -1402,6 +1402,28 @@
     .focus-item h3 { margin: 2.5rem 0 0.7rem; font-family: Manrope, Inter, sans-serif; font-size: 1.25rem; letter-spacing: -0.03em; }
     .focus-item p { max-width: 270px; color: var(--text-soft); font-size: 0.86rem; line-height: 1.6; }
 
+    .manifesto-section {
+      position: relative;
+      z-index: 2;
+      width: min(1160px, calc(100% - 3rem));
+      margin: 7rem auto 5rem;
+      padding: clamp(3.5rem, 8vw, 7rem) 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .manifesto-copy {
+      max-width: 980px;
+      margin: 0 auto;
+      font-family: Manrope, Inter, sans-serif;
+      font-size: clamp(2rem, 5vw, 5.6rem);
+      font-weight: 700;
+      line-height: 0.98;
+      letter-spacing: -0.065em;
+      text-wrap: balance;
+    }
+
     .stack-header h2 {
       max-width: 760px;
     }
@@ -1996,6 +2018,14 @@
       .focus-item:last-child { border-bottom: 0; }
       .focus-item h3 { margin-top: 1.4rem; }
 
+      .manifesto-section {
+        width: min(100% - 2rem, 35rem);
+        margin: 5rem auto 3rem;
+        padding: 3.5rem 0;
+      }
+
+      .manifesto-copy { font-size: clamp(2rem, 10vw, 3.4rem); }
+
       .process-section {
         width: min(100% - 2rem, 35rem);
         margin: 5rem auto;
@@ -2090,38 +2120,8 @@
       </div>
     </section>
 
-    <section class="positioning-section" aria-labelledby="positioning-title">
-      <div class="positioning-heading">
-        <p class="section-label">O que eu estou construindo</p>
-        <h2 id="positioning-title">Ideias virando sistemas automatizados.</h2>
-      </div>
-      <p class="positioning-copy">Eu estudo e construo estruturas digitais para transformar uma boa oferta em uma operação capaz de captar atenção, organizar dados e buscar conversão. Uso inteligência artificial, n8n e uma infraestrutura bem pensada para criar sistemas rápidos, responsivos e preparados para crescer.</p>
-      <div class="focus-grid">
-        <article class="focus-item"><span>01</span><h3>Automação & IA</h3><p>Workflows, agentes e integrações que tiram o trabalho repetitivo do caminho.</p></article>
-        <article class="focus-item"><span>02</span><h3>Oferta & aquisição</h3><p>Funis, anúncios e páginas desenhados para aproximar atenção de conversão e ROI.</p></article>
-        <article class="focus-item"><span>03</span><h3>Cloud & dados</h3><p>Arquitetura, bancos e serviços de nuvem para sustentar demanda, latência e evolução.</p></article>
-      </div>
-    </section>
-
-    <section class="stack-section" aria-label="Stack e foco técnico">
-      <div class="stack-header">
-        <h2>Ferramentas e referências.</h2>
-        <p>Uma curadoria do que uso, estudo e acompanho para construir com mais clareza, velocidade e repertório.</p>
-      </div>
-      <div class="stack-grid">
-        <article class="stack-pill"><strong>n8n</strong><span>Workflows, integrações e automações que conectam a operação.</span></article>
-        <article class="stack-pill"><strong>Cursor</strong><span>Editor com IA para explorar, escrever e evoluir código.</span></article>
-        <article class="stack-pill"><strong>GitHub + Git</strong><span>Repositórios, versionamento e construção pública dos projetos.</span></article>
-        <article class="stack-pill"><strong>Supabase</strong><span>Postgres, autenticação e dados para produtos digitais.</span></article>
-        <article class="stack-pill"><strong>AWS</strong><span>Serviços de nuvem para aplicações que precisam crescer.</span></article>
-        <article class="stack-pill"><strong>Cloudflare</strong><span>Rede, segurança e performance na borda da operação.</span></article>
-        <article class="stack-pill"><strong>ChatGPT · Claude · Gemini</strong><span>Pesquisa, raciocínio, agentes e criação de ativos.</span></article>
-        <article class="stack-pill"><strong>Pika · Kling AI · Veo</strong><span>Vídeo generativo para ideias, criativos e ofertas.</span></article>
-        <article class="stack-pill"><strong>Figma · Kittl · Awwwards</strong><span>Design, repertório visual e referências para interfaces.</span></article>
-        <article class="stack-pill"><strong>GSAP · Anime.js · 21st.dev</strong><span>Motion, componentes e interações com intenção.</span></article>
-        <article class="stack-pill"><strong>Arkham · DEX Screener · Binance · Coinbase</strong><span>Pesquisa on-chain e referências do mercado de ativos digitais.</span></article>
-        <article class="stack-pill"><strong>NotebookLM · Perplexity · Gamma</strong><span>Leitura, síntese e transformação de ideias em conteúdo.</span></article>
-      </div>
+    <section class="manifesto-section" aria-label="Manifesto">
+      <p class="manifesto-copy">Converse comigo. Tire suas ideias do papel e transforme-as em sistemas que encontram eficiência e novas oportunidades.</p>
     </section>
 
     <footer class="site-footer">
@@ -2137,16 +2137,7 @@
     const finePointer = window.matchMedia("(pointer: fine)").matches;
     const photo = document.querySelector(".photo");
     const ambientImage = document.querySelector(".ambient-visual img");
-    const stackPills = document.querySelectorAll(".stack-pill");
     const actionLinks = document.querySelectorAll(".links a");
-
-    stackPills.forEach(function (pill) {
-      pill.addEventListener("pointermove", function (event) {
-        const rect = pill.getBoundingClientRect();
-        pill.style.setProperty("--mx", (event.clientX - rect.left) + "px");
-        pill.style.setProperty("--my", (event.clientY - rect.top) + "px");
-      });
-    });
 
     if (window.gsap) {
       document.body.classList.add("motion-ready");
@@ -2162,41 +2153,12 @@
           .from(".quote-line", { opacity: 0, y: 18, duration: 0.62 }, "-=0.42")
           .from(".links a", { opacity: 0, y: 16, scale: 0.9, stagger: 0.06, duration: 0.5 }, "-=0.36");
 
-        gsap.from(".positioning-heading > *, .positioning-copy", {
-          opacity: 0,
-          y: 36,
-          stagger: 0.12,
-          duration: 0.82,
-          ease: "power3.out",
-          scrollTrigger: { trigger: ".positioning-section", start: "top 84%" }
-        });
-
-        gsap.from(".focus-item", {
+        gsap.from(".manifesto-copy", {
           opacity: 0,
           y: 28,
-          stagger: 0.1,
-          duration: 0.7,
+          duration: 0.82,
           ease: "power3.out",
-          scrollTrigger: { trigger: ".focus-grid", start: "top 86%" }
-        });
-
-        gsap.from(".stack-header > *", {
-          opacity: 0,
-          y: 32,
-          stagger: 0.12,
-          duration: 0.78,
-          ease: "power3.out",
-          scrollTrigger: { trigger: ".stack-header", start: "top 84%" }
-        });
-
-        gsap.from(".stack-pill", {
-          opacity: 0,
-          y: 34,
-          scale: 0.97,
-          stagger: 0.055,
-          duration: 0.68,
-          ease: "power3.out",
-          scrollTrigger: { trigger: ".stack-grid", start: "top 84%" }
+          scrollTrigger: { trigger: ".manifesto-section", start: "top 86%" }
         });
 
         gsap.to(".photo img", {
