@@ -1,37 +1,45 @@
-# gabbswq.github.io
+# Gabriel Diniz - Portfolio
 
-Meu site portfólio pessoal — hospedado no GitHub Pages.
+Portfolio pessoal de Gabriel Diniz, desenvolvedor junior e builder em publico.
 
-🔗 **Live:** https://gabbswq.github.io
+**Site:** [gabbswq.github.io](https://gabbswq.github.io)
 
 ## Stack
 
-- HTML5 + CSS puro (sem build, sem framework)
-- Fontes do Google Fonts (Manrope + Inter)
-- GSAP + ScrollTrigger para interação da foto, parallax, progresso e entradas por scroll
-- Conteúdo sobre n8n, automações, IA, funis, aquisição, conversão, ROI e infraestrutura cloud
-- Página de apresentação focada na capa, nos contatos e no build in public
-- Rodapé minimalista e estados de foco acessíveis para navegação por teclado
+- HTML5 semantico.
+- CSS3 responsivo para desktop, tablet e celular.
+- JavaScript nativo para interacoes progressivas.
+- GSAP 3 + ScrollTrigger para entrada, parallax, progresso e movimento da foto.
+- Google Fonts com Manrope e Inter.
+- SVG inline para icones sociais acessiveis.
+- GitHub Pages para hospedagem estatica.
+
+O projeto nao precisa de framework ou build para publicar, mas nao e apenas um HTML sem interacao: a experiencia usa GSAP, fallback natural e respeito a preferencias de movimento reduzido.
+
+## Experiencia
+
+- Capa editorial com foto do Gabriel e chamada Build in public.
+- Timeline de entrada coordenada pelo GSAP.
+- Parallax da foto e do fundo durante o scroll.
+- Inclinacao da foto e atracao dos links em ponteiro preciso.
+- Layout responsivo e navegacao por teclado.
 
 ## Estrutura
 
-```
-.
-├── index.html    # Tudo em um único arquivo (HTML + CSS + JS embutidos)
-└── README.md     # Este arquivo
-```
+    .
+    |-- index.html        # Estrutura, estilos e comportamento
+    |-- hero.png          # Foto principal
+    |-- hero-bg.png       # Fundo original
+    |-- hero-bg-final.png # Fundo publicado
+    |-- .nojekyll         # Publicacao direta no GitHub Pages
+    `-- README.md         # Documentacao
+
+## Desenvolvimento local
+
+Como e uma pagina estatica, basta abrir `index.html` no navegador ou usar Live Server no VS Code.
 
 ## Contato
 
-O portfolio usa um link direto para o Gmail Compose com `gabbsdiniz@proton.me` como destinatário.
+O portfolio aponta para GitHub, LinkedIn, X e e-mail em `gabbsdiniz@proton.me`.
 
-Não há captura de leads, banco de dados ou integração com Supabase nesta versão. O contato é feito diretamente por e-mail.
-
-## Por quê single-file?
-
-Porque ainda tô aprendendo, e dois arquivos é mais simples de manter do que vinte.
-Quando o site crescer, separo em módulos.
-
----
-
-Construído por [@gabbswq](https://github.com/gabbswq) · Curitiba 🇧🇷
+Construido por [@gabbswq](https://github.com/gabbswq) - Curitiba, Brasil.
