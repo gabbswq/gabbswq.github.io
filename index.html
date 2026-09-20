@@ -16,6 +16,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script defer src="./vendor/gsap.min.js"></script>
+  <script defer src="./vendor/ScrollTrigger.min.js"></script>
+  <script defer src="./motion.js"></script>
 
   <style>
     :root {
@@ -1433,6 +1436,17 @@
       color: var(--text-soft);
     }
 
+    .links > a {
+      width: 48px;
+      height: 48px;
+      min-height: 48px;
+      flex: 0 0 48px;
+    }
+
+    .motion-ready .links > a {
+      transition-property: border-color, color, background;
+    }
+
     .site-footer {
       position: relative;
       z-index: 2;
@@ -2020,6 +2034,13 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
       .photo,
       .photo img,
       .stack-pill,
@@ -2042,7 +2063,7 @@
       <div class="layout">
         <div class="photo-col">
           <div class="photo">
-            <img src="./hero.png?v=13" alt="Gabriel working on a laptop" />
+            <img src="./hero.png?v=13" alt="Gabriel Diniz trabalhando no notebook" fetchpriority="high" />
           </div>
         </div>
 
@@ -2054,20 +2075,20 @@
           <p class="quote-line">"Se você não constrói seu sonho, alguém vai te contratar para construir o dele."</p>
 
           <div class="links">
-            <a class="social-link icon-link" href="https://x.com/gabbsweb3" target="_blank" rel="noopener" aria-label="X">
+            <a class="social-link icon-link" href="https://x.com/gabbsweb3" target="_blank" rel="noopener" aria-label="X" title="X">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M4 4l16 16"></path>
                 <path d="M20 4 4 20"></path>
               </svg>
             </a>
-            <a class="social-link icon-link" href="https://linkedin.com/in/gabbswq" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <a class="social-link icon-link" href="https://linkedin.com/in/gabbswq" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M16 8a6 6 0 0 1 6 6v6h-4v-6a2 2 0 0 0-4 0v6h-4v-12h4v1.8A4.8 4.8 0 0 1 16 8Z"></path>
                 <path d="M2 9h4v11H2z"></path>
                 <path d="M4 4.8v.1"></path>
               </svg>
             </a>
-            <a class="social-link icon-link" href="https://github.com/gabbswq" target="_blank" rel="noopener" aria-label="GitHub">
+            <a class="social-link icon-link" href="https://github.com/gabbswq" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-1-2.6c3.3-.4 6.8-1.6 6.8-7.3a5.7 5.7 0 0 0-1.6-4 5.3 5.3 0 0 0-.1-4s-1.3-.4-4.1 1.5a14 14 0 0 0-7.4 0C5.8-.1 4.5.3 4.5.3a5.3 5.3 0 0 0-.1 4 5.7 5.7 0 0 0-1.6 4c0 5.7 3.5 6.9 6.8 7.3a3.4 3.4 0 0 0-1 2.6V22"></path>
               </svg>
@@ -2095,101 +2116,5 @@
     </footer>
 </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-
-  <script>
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const finePointer = window.matchMedia("(pointer: fine)").matches;
-    const photo = document.querySelector(".photo");
-    const ambientImage = document.querySelector(".ambient-visual img");
-    const actionLinks = document.querySelectorAll(".links a");
-
-    if (window.gsap) {
-      document.body.classList.add("motion-ready");
-
-      if (window.ScrollTrigger && !reduceMotion) {
-        gsap.registerPlugin(ScrollTrigger);
-
-        const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
-        intro
-          .from(".photo-col", { opacity: 0, x: -44, duration: 1.05 })
-          .from(".content-col", { opacity: 0, x: 34, duration: 0.9 }, "-=0.72")
-          .from(".greeting span", { opacity: 0, y: 44, stagger: 0.09, duration: 0.72 }, "-=0.58")
-          .from(".quote-line", { opacity: 0, y: 18, duration: 0.62 }, "-=0.42")
-          .from(".links a", { opacity: 0, y: 16, scale: 0.9, stagger: 0.06, duration: 0.5 }, "-=0.36");
-
-        gsap.to(".photo img", {
-          yPercent: 5,
-          scale: 1.08,
-          ease: "none",
-          scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 }
-        });
-
-        gsap.to(".content-col", {
-          yPercent: -8,
-          ease: "none",
-          scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 }
-        });
-
-        gsap.to(ambientImage, {
-          x: -22,
-          y: -42,
-          ease: "none",
-          scrollTrigger: { start: 0, end: "max", scrub: 1.2 }
-        });
-
-        gsap.to(".scroll-progress span", {
-          scaleX: 1,
-          ease: "none",
-          scrollTrigger: { start: 0, end: "max", scrub: 0.2 }
-        });
-      }
-
-      if (photo && finePointer && !reduceMotion) {
-        photo.addEventListener("mousemove", function (event) {
-          const rect = photo.getBoundingClientRect();
-          const x = (event.clientX - rect.left) / rect.width - 0.5;
-          const y = (event.clientY - rect.top) / rect.height - 0.5;
-
-          gsap.to(photo, {
-            rotateY: x * 6,
-            rotateX: -y * 6,
-            y: -8,
-            scale: 1.02,
-            duration: 0.45,
-            ease: "power3.out"
-          });
-        });
-
-        photo.addEventListener("mouseleave", function () {
-          gsap.to(photo, {
-            rotateY: 0,
-            rotateX: 0,
-            y: 0,
-            scale: 1,
-            duration: 0.65,
-            ease: "elastic.out(1, 0.55)"
-          });
-        });
-
-        actionLinks.forEach(function (link) {
-          link.addEventListener("mousemove", function (event) {
-            const rect = link.getBoundingClientRect();
-            gsap.to(link, {
-              x: (event.clientX - rect.left - rect.width / 2) * 0.18,
-              y: (event.clientY - rect.top - rect.height / 2) * 0.18,
-              duration: 0.25,
-              ease: "power2.out"
-            });
-          });
-
-          link.addEventListener("mouseleave", function () {
-            gsap.to(link, { x: 0, y: 0, duration: 0.45, ease: "elastic.out(1, 0.45)" });
-          });
-        });
-      }
-    }
-  </script>
 </body>
 </html>

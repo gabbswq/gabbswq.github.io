@@ -9,25 +9,27 @@ Portfolio pessoal de Gabriel Diniz, desenvolvedor junior e builder em publico.
 - HTML5 semantico.
 - CSS3 responsivo para desktop, tablet e celular.
 - JavaScript nativo para interacoes progressivas.
-- GSAP 3 + ScrollTrigger para entrada, parallax, progresso e movimento da foto.
+- GSAP 3.12.5 + ScrollTrigger para entrada, parallax, progresso e movimento da foto. Bibliotecas servidas pelo proprio GitHub Pages.
 - Google Fonts com Manrope e Inter.
 - SVG inline para icones sociais acessiveis.
 - GitHub Pages para hospedagem estatica.
 
-O projeto nao precisa de framework ou build para publicar, mas nao e apenas um HTML sem interacao: a experiencia usa GSAP, fallback natural e respeito a preferencias de movimento reduzido.
+O site e estatico e responsivo, com interacoes em JavaScript e GSAP. Nao precisa de build. A pagina permanece legivel sem JavaScript e respeita a preferencia por movimento reduzido, inclusive quando ela muda com a pagina aberta.
 
 ## Experiencia
 
 - Capa editorial com foto do Gabriel e chamada Build in public.
 - Timeline de entrada coordenada pelo GSAP.
-- Parallax da foto e do fundo durante o scroll.
+- Parallax da foto e do fundo ajustado ao scroll real da pagina, inclusive na capa curta.
 - Inclinacao da foto e atracao dos links em ponteiro preciso.
 - Layout responsivo e navegacao por teclado.
 
 ## Estrutura
 
     .
-    |-- index.html        # Estrutura, estilos e comportamento
+    |-- index.html        # Estrutura e estilos responsivos
+    |-- motion.js         # Animacoes e interacoes GSAP
+    |-- vendor/           # GSAP e ScrollTrigger locais, com creditos
     |-- hero.png          # Foto principal
     |-- hero-bg.png       # Fundo original
     |-- hero-bg-final.png # Fundo publicado
@@ -42,4 +44,4 @@ Como e uma pagina estatica, basta abrir `index.html` no navegador ou usar Live S
 
 O portfolio aponta para GitHub, LinkedIn, X e e-mail em `gabbsdiniz@proton.me`.
 
-Construido por [@gabbswq](https://github.com/gabbswq) - Curitiba, Brasil.
+© 2026 Gabriel Diniz. Todos os direitos reservados.
