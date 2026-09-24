@@ -5,20 +5,10 @@
   const photo = document.querySelector('.photo');
   const photoFrame = document.querySelector('.photo-col');
   const image = photo?.querySelector('img');
-  const control = document.querySelector('.motion-control');
-  const toggle = control?.querySelector('button');
-  const tooltip = control?.querySelector('[role="tooltip"]');
-  if (!photo || !photoFrame || !image || !toggle || !tooltip) return;
+  if (!photo || !photoFrame || !image) return;
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const storageKey = 'gabriel-portfolio-motion';
-  let preference = null;
   let context;
-  let enabled = false;
-  try {
-    const saved = localStorage.getItem(storageKey);
-    if (saved === 'on' || saved === 'off') preference = saved;
-  } catch { /* Private browsing may disable storage; the control still works. */ }
 
   document.body.classList.add('motion-ready');
   if (ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
@@ -26,10 +16,6 @@
   function setMotion(active, intro = false) {
     context?.revert();
     context = null;
-    enabled = active;
-    toggle.setAttribute('aria-pressed', String(active));
-    tooltip.textContent = active ? 'Pausar movimento' : 'Ativar movimento';
-    document.body.classList.toggle('motion-paused', !active);
     if (!active) return;
 
     context = gsap.context(() => {
@@ -72,7 +58,6 @@
       listen(photoFrame, 'pointermove', event => {
         // Use the actual input, so a mouse also works on touch-capable computers.
         if (event.pointerType !== 'mouse') return;
-        if (control.contains(event.target)) return reset();
         const rect = photoFrame.getBoundingClientRect();
         const x = Math.max(-0.5, Math.min(0.5, (event.clientX - rect.left) / rect.width - 0.5));
         const y = Math.max(-0.5, Math.min(0.5, (event.clientY - rect.top) / rect.height - 0.5));
@@ -103,15 +88,9 @@
     });
   }
 
-  toggle.addEventListener('click', () => {
-    preference = enabled ? 'off' : 'on';
-    try { localStorage.setItem(storageKey, preference); } catch { /* Session-only choice. */ }
-    setMotion(preference === 'on');
-  });
   reducedMotion.addEventListener('change', () => {
-    if (preference === null) setMotion(!reducedMotion.matches);
+    setMotion(!reducedMotion.matches);
   });
 
-  setMotion(preference === 'on' || (preference === null && !reducedMotion.matches), true);
-  control.hidden = false;
+  setMotion(!reducedMotion.matches, true);
 })();

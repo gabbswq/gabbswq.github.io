@@ -11,8 +11,8 @@ Meu portfólio pessoal: uma capa direta, com fotografia, tipografia e movimento.
 - Layout responsivo para celular, tablet e desktop.
 - Entrada coordenada dos elementos, parallax da fotografia e do fundo durante a rolagem.
 - Inclinação suave da foto ao mover o mouse, inclusive em computadores com tela sensível ao toque.
-- Controle para ativar ou pausar o movimento, com preferência salva neste navegador quando o armazenamento está disponível.
-- Navegação por teclado, foco visível e respeito à preferência do sistema por movimento reduzido. A ativação manual é opcional.
+- Movimento automático ao passar o mouse sobre a foto, sem botão ou ativação manual.
+- Navegação por teclado, foco visível e respeito à preferência do sistema por movimento reduzido.
 
 O conteúdo continua acessível se o JavaScript ou a biblioteca de animação não carregar. Em telas nas quais a página inteira cabe sem rolagem, não há deslocamento de scroll para animar. No celular, a foto acompanha a rolagem; a inclinação é exclusiva do mouse.
 
@@ -26,7 +26,6 @@ O conteúdo continua acessível se o JavaScript ou a biblioteca de animação n�
 | GSAP 3.12.5 | Timelines, interpolação e inclinação da foto |
 | ScrollTrigger | Parallax ajustado à rolagem disponível |
 | Manrope e Inter | Tipografia via Google Fonts, com fontes de sistema como alternativa |
-| Lucide | Ícones de reprodução e pausa |
 | GitHub Pages | Publicação estática |
 
 Ser estático não significa ser apenas HTML: CSS e JavaScript cuidam da responsividade e das interações. O projeto não exige backend, framework, instalação de pacotes ou etapa de build. GSAP e ScrollTrigger são servidos junto com o site, sem depender de um CDN em tempo de execução.
@@ -51,8 +50,8 @@ Não são necessárias chaves, login ou variáveis de ambiente para visualizar a
 
 | Arquivo | Conteúdo |
 | --- | --- |
-| [`index.html`](index.html) | Textos, links, estilos responsivos e controle de movimento |
-| [`motion.js`](motion.js) | Animações, preferências e limpeza dos eventos ao pausar |
+| [`index.html`](index.html) | Textos, links e estilos responsivos |
+| [`motion.js`](motion.js) | Animações e adaptação à preferência de movimento reduzido |
 | [`vendor/`](vendor/) | Bibliotecas locais e avisos de licença |
 | `hero.png` | Fotografia principal |
 | `hero-bg-final.png` | Fundo usado na página |
@@ -63,9 +62,9 @@ Não são necessárias chaves, login ou variáveis de ambiente para visualizar a
 
 - Testar celular e desktop sem rolagem horizontal ou sobreposição.
 - Mover o mouse sobre a foto e rolar a página quando houver espaço para rolagem.
-- Pausar e reativar pelo botão no canto inferior direito da foto; verificar também por teclado.
-- Testar com movimento reduzido no sistema: começa pausado, salvo escolha explícita anterior.
-- Recarregar e conferir se a escolha foi mantida. Para seguir novamente o sistema, remova a chave `gabriel-portfolio-motion` do armazenamento local do site.
+- Conferir que a foto reage ao mouse sem clicar e retorna ao repouso ao retirar o ponteiro.
+- Testar com movimento reduzido no sistema: as animações ficam desativadas, inclusive se a preferência mudar com a página aberta.
+- Preferências de pausa salvas por versões anteriores não são mais consultadas.
 - Conferir os links sociais e a página com JavaScript desabilitado.
 
 Para alterações em `motion.js`, atualize também sua versão na URL do script em `index.html`, evitando servir uma cópia antiga do navegador. A publicação é feita pelo GitHub Pages; uma mudança no repositório só chega ao site após a conclusão do deploy.

@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <script defer src="./vendor/gsap.min.js"></script>
   <script defer src="./vendor/ScrollTrigger.min.js"></script>
-  <script defer src="./motion.js?v=20260920"></script>
+  <script defer src="./motion.js?v=20260924-auto"></script>
 
   <style>
     :root {
@@ -1471,71 +1471,6 @@
     }
 
     /* ===== MOTION SYSTEM ===== */
-    .motion-control {
-      position: absolute;
-      right: 12px;
-      bottom: 12px;
-      z-index: 3;
-    }
-
-    .motion-control[hidden] { display: none; }
-
-    .motion-toggle {
-      display: grid;
-      place-items: center;
-      width: 44px;
-      height: 44px;
-      padding: 0;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 50%;
-      background: rgba(5, 5, 5, 0.88);
-      color: var(--text);
-      cursor: pointer;
-    }
-
-    .motion-toggle:hover { border-color: var(--accent); }
-    .motion-toggle:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 4px;
-    }
-
-    .motion-toggle svg {
-      width: 18px;
-      height: 18px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .motion-toggle[aria-pressed="true"] .motion-play,
-    .motion-toggle[aria-pressed="false"] .motion-pause { display: none; }
-
-    .motion-tooltip {
-      position: absolute;
-      right: 0;
-      bottom: calc(100% + 10px);
-      width: max-content;
-      max-width: 220px;
-      padding: 6px 10px;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      background: #111;
-      color: var(--text);
-      font: 500 12px/1.5 Inter, sans-serif;
-      letter-spacing: 0;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .motion-control:hover .motion-tooltip,
-    .motion-control:focus-within .motion-tooltip { opacity: 1; }
-
-    .motion-paused *, .motion-paused *::before, .motion-paused *::after {
-      animation: none !important;
-      transition: none !important;
-    }
 
     .motion-ready .photo-col,
     .motion-ready .content-col,
@@ -2131,14 +2066,6 @@
         <div class="photo-col">
           <div class="photo">
             <img src="./hero.png?v=13" alt="Gabriel Diniz trabalhando no notebook" fetchpriority="high" />
-          </div>
-          <div class="motion-control" hidden>
-            <button class="motion-toggle" type="button" aria-label="Movimento da foto" aria-pressed="false" aria-describedby="motion-tooltip">
-              <!-- Lucide play/pause icons: vendor/lucide-LICENSE.txt -->
-              <svg class="motion-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z" /></svg>
-              <svg class="motion-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="14" y="3" width="5" height="18" rx="1" /><rect x="5" y="3" width="5" height="18" rx="1" /></svg>
-            </button>
-            <span class="motion-tooltip" id="motion-tooltip" role="tooltip">Ativar movimento</span>
           </div>
         </div>
 
