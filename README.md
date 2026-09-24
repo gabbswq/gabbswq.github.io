@@ -12,7 +12,7 @@ Meu portfólio pessoal: uma capa direta, com fotografia, tipografia e movimento.
 - Entrada coordenada dos elementos, parallax da fotografia e do fundo durante a rolagem.
 - Inclinação suave da foto ao mover o mouse, inclusive em computadores com tela sensível ao toque.
 - Movimento automático ao passar o mouse sobre a foto, sem botão ou ativação manual.
-- Navegação por teclado, foco visível e respeito à preferência do sistema por movimento reduzido.
+- Navegação por teclado e foco visível. Com movimento reduzido, a foto continua respondendo diretamente ao mouse e à rolagem, sem inércia; entradas animadas e movimentos decorativos ficam desativados.
 
 O conteúdo continua acessível se o JavaScript ou a biblioteca de animação não carregar. Em telas nas quais a página inteira cabe sem rolagem, não há deslocamento de scroll para animar. No celular, a foto acompanha a rolagem; a inclinação é exclusiva do mouse.
 
@@ -63,7 +63,7 @@ Não são necessárias chaves, login ou variáveis de ambiente para visualizar a
 - Testar celular e desktop sem rolagem horizontal ou sobreposição.
 - Mover o mouse sobre a foto e rolar a página quando houver espaço para rolagem.
 - Conferir que a foto reage ao mouse sem clicar e retorna ao repouso ao retirar o ponteiro.
-- Testar com movimento reduzido no sistema: as animações ficam desativadas, inclusive se a preferência mudar com a página aberta.
+- Testar com movimento reduzido no sistema: a foto responde ao mouse e à rolagem sem inércia, enquanto as entradas, o fundo e os links não recebem movimento decorativo.
 - Preferências de pausa salvas por versões anteriores não são mais consultadas.
 - Conferir os links sociais e a página com JavaScript desabilitado.
 

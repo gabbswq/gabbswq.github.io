@@ -13,13 +13,12 @@
   document.body.classList.add('motion-ready');
   if (ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
 
-  function setMotion(active, intro = false) {
+  function setMotion(reduced, intro = false) {
     context?.revert();
     context = null;
-    if (!active) return;
 
     context = gsap.context(() => {
-      if (intro) {
+      if (intro && !reduced) {
         gsap.timeline({ defaults: { ease: 'power3.out', clearProps: 'transform,opacity' } })
           .from(photoFrame, { opacity: 0, x: -24, duration: 0.9 })
           .from('.content-col', { opacity: 0, x: 24, duration: 0.8 }, '-=0.65')
@@ -36,24 +35,31 @@
           yPercent: 2, scale: 1.08, ease: 'none',
           scrollTrigger: {
             trigger: '.hero', start: 'top top', end: 'clamp(bottom top)',
-            scrub: 0.6, invalidateOnRefresh: true,
+            scrub: reduced ? true : 0.6, invalidateOnRefresh: true,
           },
         });
-        gsap.to('.ambient-visual img', {
-          x: -16, y: -28, ease: 'none',
-          scrollTrigger: { start: 0, end: 'max', scrub: 0.8 },
-        });
+        if (!reduced) {
+          gsap.to('.ambient-visual img', {
+            x: -16, y: -28, ease: 'none',
+            scrollTrigger: { start: 0, end: 'max', scrub: 0.8 },
+          });
+        }
         gsap.to('.scroll-progress span', {
           scaleX: 1, ease: 'none',
-          scrollTrigger: { start: 0, end: 'max', scrub: 0.2 },
+          scrollTrigger: { start: 0, end: 'max', scrub: reduced ? true : 0.2 },
         });
         listen(image, 'load', () => ScrollTrigger.refresh());
         ScrollTrigger.refresh();
       }
 
-      const rotateX = gsap.quickTo(photo, 'rotationX', { duration: 0.5, ease: 'power3.out' });
-      const rotateY = gsap.quickTo(photo, 'rotationY', { duration: 0.5, ease: 'power3.out' });
-      const lift = gsap.quickTo(photo, 'y', { duration: 0.5, ease: 'power3.out' });
+      // Direct photo interactions remain available; reduced motion removes inertia.
+      gsap.set(photo, { rotationX: 0, rotationY: 0, y: 0 });
+      const follow = (property, unit) => reduced
+        ? gsap.quickSetter(photo, property, unit)
+        : gsap.quickTo(photo, property, { duration: 0.5, ease: 'power3.out' });
+      const rotateX = follow('rotationX', 'deg');
+      const rotateY = follow('rotationY', 'deg');
+      const lift = follow('y', 'px');
       const reset = () => { rotateX(0); rotateY(0); lift(0); };
       listen(photoFrame, 'pointermove', event => {
         // Use the actual input, so a mouse also works on touch-capable computers.
@@ -69,7 +75,7 @@
       listen(photoFrame, 'pointercancel', reset);
       listen(window, 'blur', reset);
 
-      document.querySelectorAll('.links a').forEach(link => {
+      if (!reduced) document.querySelectorAll('.links a').forEach(link => {
         const x = gsap.quickTo(link, 'x', { duration: 0.3, ease: 'power3.out' });
         const y = gsap.quickTo(link, 'y', { duration: 0.3, ease: 'power3.out' });
         const resetLink = () => { x(0); y(0); };
@@ -89,8 +95,8 @@
   }
 
   reducedMotion.addEventListener('change', () => {
-    setMotion(!reducedMotion.matches);
+    setMotion(reducedMotion.matches);
   });
 
-  setMotion(!reducedMotion.matches, true);
+  setMotion(reducedMotion.matches, true);
 })();
