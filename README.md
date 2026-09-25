@@ -9,12 +9,12 @@ Meu portfólio pessoal: uma capa direta, com fotografia, tipografia e movimento.
 ## A experiência
 
 - Layout responsivo para celular, tablet e desktop.
-- Entrada coordenada dos elementos, parallax da fotografia e do fundo durante a rolagem.
-- Inclinação suave da foto ao mover o mouse, inclusive em computadores com tela sensível ao toque.
-- Movimento automático ao passar o mouse sobre a foto, sem botão ou ativação manual.
+- Entrada coordenada dos elementos e parallax do fundo durante a rolagem.
+- Foto explorável dentro de uma moldura fixa: aproximação suave e deslocamento com o mouse ou a rodinha.
+- Ao retirar o ponteiro, a foto retorna ao enquadramento original, sem botão ou ativação manual.
 - Navegação por teclado e foco visível. Com movimento reduzido, a foto continua respondendo diretamente ao mouse e à rolagem, sem inércia; entradas animadas e movimentos decorativos ficam desativados.
 
-O conteúdo continua acessível se o JavaScript ou a biblioteca de animação não carregar. Em telas nas quais a página inteira cabe sem rolagem, não há deslocamento de scroll para animar. No celular, a foto acompanha a rolagem; a inclinação é exclusiva do mouse.
+O conteúdo continua acessível se o JavaScript ou a biblioteca de animação não carregar. A exploração da foto funciona mesmo quando a página cabe inteira na tela. Ao alcançar os limites da imagem, a rodinha volta a rolar a página; gestos de zoom do navegador são preservados. No celular, o toque mantém a rolagem normal e a foto permanece no enquadramento original.
 
 ## Tecnologias
 
@@ -23,7 +23,7 @@ O conteúdo continua acessível se o JavaScript ou a biblioteca de animação n�
 | HTML5 | Estrutura semântica e conteúdo |
 | CSS3 | Grid, layout responsivo e estados de interação |
 | JavaScript | Preferências e eventos de mouse, teclado e página |
-| GSAP 3.12.5 | Timelines, interpolação e inclinação da foto |
+| GSAP 3.12.5 | Timelines, aproximação e deslocamento interno da foto |
 | ScrollTrigger | Parallax ajustado à rolagem disponível |
 | Manrope e Inter | Tipografia via Google Fonts, com fontes de sistema como alternativa |
 | GitHub Pages | Publicação estática |
@@ -62,7 +62,8 @@ Não são necessárias chaves, login ou variáveis de ambiente para visualizar a
 
 - Testar celular e desktop sem rolagem horizontal ou sobreposição.
 - Mover o mouse sobre a foto e rolar a página quando houver espaço para rolagem.
-- Conferir que a foto reage ao mouse sem clicar e retorna ao repouso ao retirar o ponteiro.
+- Conferir mouse e rodinha dentro da foto, sem espaços vazios nas bordas; ao sair, o enquadramento deve voltar ao original.
+- Conferir que, nos limites da imagem ou fora da foto, a página continua rolando normalmente.
 - Testar com movimento reduzido no sistema: a foto responde ao mouse e à rolagem sem inércia, enquanto as entradas, o fundo e os links não recebem movimento decorativo.
 - Preferências de pausa salvas por versões anteriores não são mais consultadas.
 - Conferir os links sociais e a página com JavaScript desabilitado.
