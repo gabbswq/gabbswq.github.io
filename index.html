@@ -18,7 +18,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <script defer src="./vendor/gsap.min.js"></script>
   <script defer src="./vendor/ScrollTrigger.min.js"></script>
-  <script defer src="./motion.js?v=20260924-interactive"></script>
+  <script defer src="./motion.js?v=20261001-pan"></script>
+  <script defer src="./portrait-pan.js?v=20261001"></script>
 
   <style>
     :root {
@@ -112,12 +113,11 @@
 
     .photo-col {
       position: relative;
-      perspective: 1200px;
     }
 
     .photo {
       width: 100%;
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 1 / 1;
       position: relative;
       overflow: hidden;
       border-radius: var(--radius);
@@ -126,8 +126,6 @@
       box-shadow:
         0 34px 110px rgba(0, 0, 0, 0.62),
         0 0 0 1px rgba(247, 147, 26, 0.035);
-      transform-style: preserve-3d;
-      will-change: transform;
       transition: border-color 0.35s ease, box-shadow 0.35s ease;
     }
 
@@ -178,6 +176,85 @@
 
     .photo:hover img {
       filter: brightness(0.98) contrast(1.13);
+    }
+
+    .photo[data-pan-ready] {
+      touch-action: pinch-zoom;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .photo[data-pan-ready] img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      max-width: none;
+      object-fit: contain;
+      object-position: center;
+      -webkit-touch-callout: none;
+    }
+
+    .photo[data-pan-axis="none"] { touch-action: auto; cursor: auto; }
+    .photo[data-dragging] { cursor: grabbing; }
+
+    .photo:focus-visible,
+    .photo-reset:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    .photo-hint,
+    .photo-reset {
+      position: absolute;
+      bottom: 12px;
+      z-index: 4;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      font: 500 12px/1.4 Inter, sans-serif;
+      letter-spacing: 0;
+    }
+
+    .photo-hint {
+      left: 14px;
+      right: 118px;
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      color: #ededed;
+      text-shadow: 0 1px 4px #000;
+      pointer-events: none;
+    }
+
+    .photo-reset {
+      right: 12px;
+      min-height: 36px;
+      padding: 8px 10px;
+      border: 1px solid #555;
+      border-radius: 4px;
+      color: #ededed;
+      background: rgba(5, 5, 5, 0.85);
+      cursor: pointer;
+    }
+
+    .photo-hint[hidden], .photo-reset[hidden] { display: none; }
+    .photo:hover .photo-hint, .photo:focus-within .photo-hint,
+    .photo:hover .photo-reset, .photo:focus-within .photo-reset { opacity: 1; }
+    .photo[data-dragging] .photo-hint { opacity: 0; }
+
+    .photo-help {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    @media (hover: none), (pointer: coarse) {
+      .photo-hint, .photo-reset { opacity: 1; min-height: 44px; }
     }
 
     .content-col {
@@ -447,10 +524,6 @@
 
       .layout {
         gap: 2rem;
-      }
-
-      .photo {
-        aspect-ratio: 16 / 11;
       }
 
       .greeting {
@@ -1000,7 +1073,6 @@
       text-transform: uppercase;
     }
 
-    .photo-col,
     .content-col {
       animation: softReveal 0.9s ease both;
     }
@@ -1310,10 +1382,6 @@
     /* ===== CURRENT VISUAL PASS ===== */
     .layout {
       max-width: 1320px;
-    }
-
-    .photo {
-      aspect-ratio: 1.32 / 1;
     }
 
     .ambient-visual img {
@@ -2035,6 +2103,14 @@
       }
     }
 
+    @media (pointer: coarse) and (orientation: landscape) and (max-width: 859px) {
+      .photo-col {
+        width: min(100%, calc(100svh - 80px));
+        max-width: 100%;
+        margin-inline: auto;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
 
@@ -2064,9 +2140,12 @@
     <section class="hero">
       <div class="layout">
         <div class="photo-col">
-          <div class="photo">
-            <img src="./hero.png?v=13" alt="Gabriel Diniz trabalhando no notebook" fetchpriority="high" />
+          <div class="photo" role="group" aria-label="Fotografia de Gabriel">
+            <img src="./hero.png?v=13" alt="Gabriel Diniz trabalhando no notebook" fetchpriority="high" draggable="false" />
+            <span class="photo-hint" aria-hidden="true" hidden>Arraste para explorar</span>
+            <button class="photo-reset" type="button" aria-label="Recentrar fotografia" title="Voltar ao enquadramento inicial" hidden>Recentrar</button>
           </div>
+          <p class="photo-help" id="portrait-help">Arraste ou use a roda do mouse para explorar a fotografia. No teclado, use as setas nos eixos disponíveis e Home para voltar ao enquadramento inicial. No celular, arraste fora da fotografia para rolar a página; o gesto de pinça continua disponível.</p>
         </div>
 
         <div class="content-col">

@@ -1,0 +1,10 @@
+{
+  "name": "gabbswq-portfolio",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/portrait-pan.test.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

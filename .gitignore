@@ -12,3 +12,7 @@ desktop.ini
 
 # Logs
 *.log
+
+# Browser verification only; the site itself has no build step.
+node_modules/
+test-results/
