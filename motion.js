@@ -10,7 +10,6 @@
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let context;
 
-  document.body.classList.add('motion-ready');
   if (ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
 
   function setMotion(reduced, intro = false) {
