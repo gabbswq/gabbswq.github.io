@@ -2,9 +2,7 @@
   'use strict';
   const frame = document.querySelector('.photo');
   const image = frame?.querySelector('img');
-  const resetButton = frame?.querySelector('.photo-reset');
-  const hint = frame?.querySelector('.photo-hint');
-  if (!image || !resetButton || !hint) return;
+  if (!image) return;
 
   const initial = { x: 0.58, y: 0.5 };
   const fraction = { ...initial };
@@ -65,7 +63,6 @@
     frame.dataset.panReady = '';
     frame.dataset.panAxis = bounds.x ? (bounds.y ? 'both' : 'x') : (bounds.y ? 'y' : 'none');
     const available = Boolean(bounds.x || bounds.y);
-    resetButton.hidden = hint.hidden = !available;
     if (available) {
       frame.tabIndex = 0;
       frame.setAttribute('aria-describedby', 'portrait-help');
@@ -85,7 +82,6 @@
 
   listen(frame, 'pointerdown', event => {
     if (!event.isPrimary || event.button !== 0 || !(bounds.x || bounds.y)) return;
-    if (event.target.closest('button')) return;
     finishDrag();
     drag = { id: event.pointerId, x: event.clientX, y: event.clientY };
     frame.setPointerCapture(event.pointerId);
@@ -104,17 +100,17 @@
     drag.y = event.clientY;
   });
 
-  // A second finger belongs to the browser's pinch gesture, never to photo dragging.
+  // Global listeners only end an existing gesture; they never block page input.
+  // A second finger, even outside the frame, belongs to the browser's pinch gesture.
   listen(window, 'pointerdown', event => {
     if (drag && event.pointerType === 'touch' && event.pointerId !== drag.id) finishDrag();
   }, { capture: true });
   for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) {
-    listen(window, type, event => { if (event.pointerId === drag?.id) finishDrag(); });
+    listen(frame, type, event => { if (event.pointerId === drag?.id) finishDrag(); });
   }
   listen(window, 'blur', finishDrag);
   listen(document, 'visibilitychange', () => { if (document.hidden) finishDrag(); });
   listen(image, 'dragstart', event => event.preventDefault());
-  listen(resetButton, 'click', reset);
 
   listen(frame, 'wheel', event => {
     if (event.ctrlKey || event.metaKey || !event.cancelable || !(bounds.x || bounds.y)) return;
@@ -162,7 +158,6 @@
     frame.removeAttribute('tabindex');
     frame.removeAttribute('aria-describedby');
     frame.removeAttribute('aria-keyshortcuts');
-    resetButton.hidden = hint.hidden = true;
     for (const property of ['width', 'height', 'transform']) image.style.removeProperty(property);
   });
   const observer = new ResizeObserver(measure);

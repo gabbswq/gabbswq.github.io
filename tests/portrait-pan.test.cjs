@@ -105,6 +105,41 @@ function near(actual, expected, message, tolerance = 0.15) {
   assert.ok(Math.abs(actual - expected) < tolerance, `${message}: ${actual} != ${expected}`);
 }
 
+test('photo contains only the image and hover alone changes neither its position nor its styling', async t => {
+  const page = await open(t, { reducedMotion: 'no-preference' });
+  const frame = page.locator('.photo');
+  assert.equal(await frame.locator(':scope > *').count(), 1);
+  assert.equal((await frame.textContent()).trim(), '');
+  const appearance = () => frame.evaluate(el => {
+    const style = getComputedStyle(el);
+    return {
+      border: style.border,
+      radius: style.borderRadius,
+      shadow: style.boxShadow,
+      background: style.backgroundImage,
+      before: getComputedStyle(el, '::before').content,
+      after: getComputedStyle(el, '::after').content,
+      filter: getComputedStyle(el.querySelector('img')).filter,
+    };
+  });
+  const original = await appearance();
+  assert.equal(original.shadow, 'none');
+  assert.equal(original.background, 'none');
+  assert.equal(original.before, 'none');
+  assert.equal(original.after, 'none');
+  const before = await state(page);
+  await page.mouse.move(before.frame.x + 20, before.frame.y + 20);
+  await page.mouse.move(before.frame.x + before.frame.width - 20, before.frame.y + before.frame.height - 20, { steps: 6 });
+  await page.waitForTimeout(700);
+  const hovered = await state(page);
+  near(hovered.x, before.x, 'hover alone does not pan');
+  near(hovered.y, before.y, 'hover alone does not pan vertically');
+  assert.deepEqual(hovered.frame, before.frame, 'hover never moves the frame');
+  assert.deepEqual(await appearance(), original, 'no hover glow, gradient, or filter change');
+  assert.equal(await frame.evaluate(el => el === document.activeElement), false);
+  assert.equal(await frame.evaluate(el => getComputedStyle(el).outlineStyle), 'none');
+});
+
 test('original landscape asset is unchanged, fully rendered, and initially composed around the face', async t => {
   const bytes = fs.readFileSync(path.join(root, 'hero.png'));
   assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'), '64f15a6664fb75824ef0766ba99c8be1058ecfe21f77581d92783902050cedb0');
@@ -145,8 +180,14 @@ for (const reducedMotion of ['reduce', 'no-preference']) {
   });
 }
 
-test('vertical wheel reveals horizontal content, reaches both original edges, and releases page scroll at boundaries', async t => {
+test('wheel works on first hover without click or focus, reaches both edges, and releases page scroll', async t => {
   const page = await open(t);
+  await page.evaluate(() => {
+    window.photoActivationEvents = 0;
+    for (const type of ['pointerdown', 'click', 'focus']) {
+      document.querySelector('.photo').addEventListener(type, () => window.photoActivationEvents++);
+    }
+  });
   let s = await state(page);
   await page.mouse.move(s.frame.x + s.frame.width / 2, s.frame.y + s.frame.height / 2);
   const initial = s.x;
@@ -155,6 +196,8 @@ test('vertical wheel reveals horizontal content, reaches both original edges, an
   s = await state(page);
   near(s.x, initial + 40, 'vertical wheel maps to overflow');
   assert.equal(s.scroll, 0);
+  assert.equal(await page.evaluate(() => window.photoActivationEvents), 0, 'wheel never needs or triggers activation');
+  assert.equal(await page.locator('.photo').evaluate(el => el === document.activeElement), false);
   assert.equal(await wheel(page, 0, -100000), true);
   s = await state(page);
   near(s.x, 0, 'left edge reachable');
@@ -170,10 +213,21 @@ test('vertical wheel reveals horizontal content, reaches both original edges, an
   assert.ok((await state(page)).covered);
 });
 
+test('wheel outside the photo scrolls the page without moving the image', async t => {
+  const page = await open(t, { viewport: { width: 1440, height: 650 } });
+  const before = await state(page);
+  await page.mouse.move(1400, 300);
+  await page.mouse.wheel(0, 100);
+  await page.waitForFunction(() => scrollY > 0);
+  const after = await state(page);
+  near(after.x, before.x, 'outside wheel does not pan');
+  near(after.y, before.y, 'outside wheel does not pan');
+});
+
 test('trackpad deltas, Shift, line/page modes, browser zoom and noncancelable events', async t => {
   const page = await open(t);
-  const reset = () => page.locator('.photo-reset').evaluate(button => button.click());
-  for (const [dx, dy, options, distance] of [[12, 0, {}, 12], [20, 5, {}, 20], [0, 10, { shiftKey: true }, 10]]) {
+  const reset = () => page.locator('.photo').dispatchEvent('keydown', { key: 'Home' });
+  for (const [dx, dy, options, distance] of [[12, 0, {}, 12], [-12, 0, {}, -12], [20, 5, {}, 20], [-20, -5, {}, -20], [0, 10, { shiftKey: true }, 10]]) {
     await reset();
     const before = await state(page);
     assert.equal(await wheel(page, dx, dy, options), true);
@@ -193,11 +247,13 @@ test('trackpad deltas, Shift, line/page modes, browser zoom and noncancelable ev
   }
 });
 
-test('keyboard arrows, visible focus, Home and reset button', async t => {
+test('keyboard navigation and Home remain accessible without any visible controls', async t => {
   const page = await open(t);
   const frame = page.locator('.photo');
-  await frame.focus();
+  await page.keyboard.press('Tab');
+  assert.equal(await frame.evaluate(el => el === document.activeElement), true);
   assert.notEqual(await frame.evaluate(el => getComputedStyle(el).outlineStyle), 'none');
+  assert.equal(await frame.getAttribute('aria-describedby'), 'portrait-help');
   const initial = (await state(page)).x;
   await page.keyboard.press('ArrowLeft');
   near((await state(page)).x, initial - 24, 'left arrow');
@@ -206,10 +262,15 @@ test('keyboard arrows, visible focus, Home and reset button', async t => {
   await page.keyboard.press('Home');
   near((await state(page)).x, initial, 'Home resets');
   await page.keyboard.press('ArrowRight');
+  const held = (await state(page)).x;
   await page.keyboard.press('Tab');
-  assert.equal(await page.locator('.photo-reset').evaluate(el => el === document.activeElement), true);
-  await page.keyboard.press('Enter');
-  near((await state(page)).x, initial, 'accessible reset action');
+  // WebKit may skip native links depending on its full keyboard access setting.
+  assert.equal(await frame.evaluate(el => el === document.activeElement), false, 'Tab leaves the photo without a focus trap');
+  if (engine !== 'webkit') {
+    assert.equal(await page.locator('.links a').first().evaluate(el => el === document.activeElement), true);
+  }
+  near((await state(page)).x, held, 'leaving keyboard focus does not reset the photo');
+  assert.equal(await frame.locator('button, [role="button"]').count(), 0);
 });
 
 test('blur, pointer cancellation, lost capture and resize terminate dragging without resetting the explored position', async t => {
@@ -256,7 +317,7 @@ test('responsive resizing, orientation and real vertical/no-overflow geometry', 
   await page.locator('.photo').evaluate(el => { el.style.width = '514px'; el.style.height = `${512 * document.querySelector('.photo img').naturalHeight / document.querySelector('.photo img').naturalWidth + 2}px`; });
   await page.waitForFunction(() => document.querySelector('.photo').dataset.panAxis === 'none');
   assert.equal(await wheel(page, 0, 30), false);
-  assert.equal(await page.locator('.photo-reset').isVisible(), false);
+  assert.equal(await page.locator('.photo').getAttribute('tabindex'), null);
   assert.equal((await state(page)).touch, 'auto');
 });
 
@@ -266,12 +327,15 @@ test('mobile touch drag is immediate, navigation outside remains native, and pin
   const touch = (type, points) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: points });
   const s = await state(page);
   const x = s.frame.x + s.frame.width / 2, y = s.frame.y + s.frame.height / 2;
+  assert.equal(await page.locator('.photo').evaluate(el => el === document.activeElement), false);
   await touch('touchStart', [{ x, y, id: 1 }]);
+  assert.equal((await state(page)).dragging, true, 'the first touch starts dragging without tap or long press');
   await touch('touchMove', [{ x: x - 45, y: y + 12, id: 1 }]);
   near((await state(page)).x, s.x + 45, 'one-finger diagonal movement follows immediately');
   assert.equal((await state(page)).scroll, 0);
   await touch('touchEnd', []);
   assert.equal((await state(page)).dragging, false);
+  near((await state(page)).x, s.x + 45, 'touch release keeps the explored position');
   await touch('touchStart', [{ x, y, id: 1 }]);
   await touch('touchCancel', []);
   assert.equal((await state(page)).dragging, false);
@@ -338,5 +402,5 @@ test('desktop/mobile captures and unchanged fallback without JavaScript', async 
   t.after(() => fallback.close());
   await fallback.goto(url);
   assert.equal(await fallback.locator('.photo img').isVisible(), true);
-  assert.equal(await fallback.locator('.photo-reset').isVisible(), false);
+  assert.equal(await fallback.locator('.photo > :not(img)').count(), 0);
 });

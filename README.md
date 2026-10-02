@@ -11,8 +11,9 @@ Meu portfólio pessoal: uma capa direta, com fotografia, tipografia e movimento.
 - Layout responsivo para celular, tablet e desktop.
 - Entrada coordenada dos textos e parallax do fundo durante a rolagem.
 - Fotografia explorável por arraste, roda do mouse, trackpad e teclado, dentro de uma moldura fixa.
+- Interação sempre disponível, sem clique prévio, botão, dica visível ou modo de exploração. Passar o cursor sozinho não movimenta a foto.
 - No celular, arraste com um dedo dentro da foto; a pinça continua sendo do navegador. Fora da foto, a navegação permanece normal.
-- A posição explorada é mantida ao soltar, sair com o ponteiro e redimensionar. **Recentrar** ou **Home** recupera o enquadramento inicial.
+- A posição explorada é mantida ao soltar, sair com o ponteiro e redimensionar. **Home**, com foco de teclado na foto, recupera o enquadramento inicial.
 - Foco visível e descrição dos controles para leitores de tela. Com movimento reduzido, a manipulação direta continua funcionando sem inércia; os movimentos decorativos são desativados.
 
 O conteúdo continua acessível sem JavaScript: a foto usa um recorte estático. A exploração da foto não depende do GSAP. Em telas nas quais a página inteira cabe, não há deslocamento de página para animar no fundo.
@@ -31,7 +32,7 @@ O arquivo `hero.png` é a fotografia horizontal de 2048 × 1143 pixels, preserva
 | Borda da imagem | Novos eventos de roda voltados para fora não são consumidos, permitindo a rolagem normal da página |
 | Ctrl/Cmd + roda | Preservado para o navegador |
 | Setas | Deslocam a janela de observação nos eixos disponíveis; Shift aumenta o passo |
-| Home / Recentrar | Volta à composição inicial, em 58% do espaço horizontal e 50% do vertical |
+| Home | Com foco de teclado na foto, volta à composição inicial, em 58% do espaço horizontal e 50% do vertical |
 
 Nesta fotografia e nestas proporções de moldura, há normalmente apenas espaço horizontal para explorar. Suportar gestos diagonais não significa criar artificialmente uma segunda direção.
 
@@ -89,7 +90,9 @@ Não são necessárias chaves, login ou variáveis de ambiente para visualizar a
 
 - Testar celular e desktop sem rolagem horizontal ou sobreposição.
 - Arrastar a foto e usar a roda vertical para alcançar os dois lados da composição, sem bordas vazias.
-- Conferir que sair com o ponteiro preserva a posição e que Home/Recentrar a restaura.
+- Testar a roda sobre a foto sem clicar ou focar antes; iniciar o arraste móvel com o primeiro toque, sem ativação.
+- Conferir que não há botão, instrução visível, gradiente sobre a foto ou brilho ao passar o cursor.
+- Conferir que sair com o ponteiro preserva a posição e que Home a restaura quando acionado pelo teclado.
 - Testar teclado, perda de foco, cancelamento do gesto, redimensionamento e rotação do celular.
 - Conferir rolagem fora da foto e pinça do navegador no celular; não esperar transferência de toque no meio do gesto.
 - Testar com movimento reduzido: a foto responde diretamente, enquanto as entradas, o fundo e os links não recebem movimento decorativo.
